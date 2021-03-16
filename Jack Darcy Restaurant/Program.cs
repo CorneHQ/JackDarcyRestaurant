@@ -25,6 +25,13 @@ namespace Jack_Darcy_Restaurant
                 $"Adres                     : Wijnhaven 107\n" +
                 $"PostCode                  : 3011 WN, Rotterdam\n" +
                 $"Land                      : The Netherlands\n" +
+                $"                Beschrijving\n" +
+                $"de locatie is vlakbij blaak. heel makkelijke te \n" +
+                $"bereiken met metro als je vanaf blaak uitstapt en \n" +
+                $"richting beurs loopt via hoogstraat. kom je op een \n" +
+                $"gegeven moment langs McDonald. bij de McDonald links \n" +
+                $"de straat in. vervolgens recht door lopen tot dat \n" +
+                $"je een brug ziet en voor de rechts afslaan.\n " +
                 $"\n\n" +
                 $"                  _______\n" +
                 $"                  Contact\n" +
