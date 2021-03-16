@@ -19,7 +19,13 @@ namespace Jack_Darcy_Restaurant
                 $"donderdag 12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"vrijdag   12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"zaterdag  12:00 - 16:00 and 18:00 - 00:00\n" +
-                $"zondag    12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"zondag    12:00 - 16:00 and 18:00 - 00:00\n" +              
+                $"\n\n" +
+                $" Locatie   \n" +
+                $"adres huisnummer " +
+                $"postcode , stad " +
+                $"land " +
+                $"" +
                 $"");
 
         }
