@@ -9,8 +9,11 @@ namespace Jack_Darcy_Restaurant
             Console.WriteLine("Hello World!");
             Console.WriteLine("\n\n");
 
-            Console.WriteLine($"     ____________\n      Leuke Header\n\n\n");
-            Console.WriteLine($"    Openings tijden\n\n" +
+            Console.WriteLine($"     ____________\n" +
+                $"Leuke Header\n\n\n");
+            Console.WriteLine($"" +
+                $"              Openings tijden\n" +
+                $"              ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔         \n\n" +
                 $"Maandag   12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"Dinsdag   12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"Woensdag  12:00 - 16:00 and 18:00 - 00:00\n" +
@@ -19,10 +22,10 @@ namespace Jack_Darcy_Restaurant
                 $"Zaterdag  12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"Zondag    12:00 - 16:00 and 18:00 - 00:00\n" +              
                 $"\n\n" +
-                $"    Locatie   \n\n" +
-                $"Wijnhaven 107\n" +
-                $"3011 WN, Rotterdam\n" +
-                $"The Netherlands\n" +
+                $"                  Locatie   \n\n" +
+                $"Adres             : Wijnhaven 107\n" +
+                $"PostCode          : 3011 WN, Rotterdam\n" +
+                $"Land              : The Netherlands\n" +
                 $"\n\n" +
                 $"Contact \n" +
                 $"Telefoon-nummer   : 010 0000000\n" +
