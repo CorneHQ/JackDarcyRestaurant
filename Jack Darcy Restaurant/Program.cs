@@ -13,13 +13,13 @@ namespace Jack_Darcy_Restaurant
 
             Console.WriteLine($"{x}____________\n{x}Leuke Header\n\n\n");
             Console.WriteLine($"    openings tijden\n\n" +
-                $"Maandag   12:00 - 12:00\n" +
-                $"dinsdag   12:00 - 12:00\n" +
-                $"woensdag  12:00 - 12:00\n" +
-                $"donderdag 12:00 - 12:00\n" +
-                $"vrijdag   12:00 - 12:00\n" +
-                $"zaterdag  12:00 - 12:00\n" +
-                $"zondag    12:00 - 12:00\n" +
+                $"Maandag   12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"dinsdag   12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"woensdag  12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"donderdag 12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"vrijdag   12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"zaterdag  12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"zondag    12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"");
 
         }
