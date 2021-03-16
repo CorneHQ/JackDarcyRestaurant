@@ -10,7 +10,7 @@ namespace Jack_Darcy_Restaurant
             Console.WriteLine($"" +
                 $"              _______________\n" +
                 $"              Openings tijden\n" +
-                $"              \u0305\u0305\u0305\u0305\u0305\u0305\u0305\u0305\u0305\u0305\u0305\u0305\u0305\u0305\u0305         \n" +
+                $"                       \n" +
                 $"Maandag   12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"Dinsdag   12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"Woensdag  12:00 - 16:00 and 18:00 - 00:00\n" +
@@ -21,14 +21,14 @@ namespace Jack_Darcy_Restaurant
                 $"\n\n" +
                 $"                  _______\n" +
                 $"                  Locatie   \n" +
-                $"                  \u0305\u0305\u0305\u0305\u0305\u0305\u0305    \n" +
+                $"                      \n" +
                 $"Adres                     : Wijnhaven 107\n" +
                 $"PostCode                  : 3011 WN, Rotterdam\n" +
                 $"Land                      : The Netherlands\n" +
                 $"\n\n" +
                 $"                  _______\n" +
                 $"                  Contact\n" +
-                $"                  \u0305\u0305\u0305\u0305\u0305\u0305\u0305\n" +
+                $"                  \n" +
                 $"Telefoon-nummer           : 010 0000000\n" +
                 $"E-mail                    : hogeschool@hr.nl \n" +
                 $"Facebook                  : https://www.facebook.com \n" +
