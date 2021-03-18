@@ -11,22 +11,22 @@ namespace Jack_Darcy_Restaurant
                 $"              _______________\n" +
                 $"              Openings tijden\n" +
                 $"                       \n" +
-                $"Maandag   12:00 - 16:00 and 18:00 - 00:00\n" +
-                $"Dinsdag   12:00 - 16:00 and 18:00 - 00:00\n" +
-                $"Woensdag  12:00 - 16:00 and 18:00 - 00:00\n" +
-                $"Donderdag 12:00 - 16:00 and 18:00 - 00:00\n" +
-                $"Vrijdag   12:00 - 16:00 and 18:00 - 00:00\n" +
-                $"Zaterdag  12:00 - 16:00 and 18:00 - 00:00\n" +
-                $"Zondag    12:00 - 16:00 and 18:00 - 00:00\n" +              
+                $"Monday                12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"Tuesday               12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"Wednesday             12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"Thursday              12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"Friday                12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"Saturday              12:00 - 16:00 and 18:00 - 00:00\n" +
+                $"Sunday                12:00 - 16:00 and 18:00 - 00:00\n" +              
                 $"\n\n" +
-                $"                  _______\n" +
-                $"                  Locatie   \n" +
+                $"                  ________\n" +
+                $"                  Location   \n" +
                 $"                      \n" +
-                $"Adres                     : Wijnhaven 107\n" +
-                $"PostCode                  : 3011 WN, Rotterdam\n" +
-                $"Land                      : The Netherlands\n" +
-                $"                Beschrijving\n" +
-                $"de locatie is vlakbij blaak. heel makkelijke te \n" +
+                $"Address                     : Wijnhaven 107\n" +
+                $"ZipCode                     : 3011 WN, Rotterdam\n" +
+                $"Country                     : The Netherlands\n" +
+                $"                Description\n" +
+                $"The location is near subwaystation Blaak. heel makkelijke te \n" +
                 $"bereiken met metro als je vanaf blaak uitstapt en \n" +
                 $"richting beurs loopt via hoogstraat. kom je op een \n" +
                 $"gegeven moment langs McDonald. bij de McDonald links \n" +
@@ -36,7 +36,7 @@ namespace Jack_Darcy_Restaurant
                 $"                  _______\n" +
                 $"                  Contact\n" +
                 $"                  \n" +
-                $"Telefoon-nummer           : 010 0000000\n" +
+                $"Telephone-number          : 010 0000000\n" +
                 $"E-mail                    : hogeschool@hr.nl \n" +
                 $"Facebook                  : https://www.facebook.com \n" +
                 $"Instagram                 : https://www.instagram.com \n" +
