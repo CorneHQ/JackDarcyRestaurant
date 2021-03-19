@@ -42,7 +42,7 @@ namespace Jack_Darcy_Restaurant
                 $"Facebook                  : https://www.facebook.com \n" +
                 $"Instagram                 : https://www.instagram.com \n" +
                 $"Twitter                   : https://twitter.com/ \n" +
-                $"Pinterest           : https://www.pinterest.com \n" +
+                $"Pinterest                 : https://www.pinterest.com \n" +
                 $"");
 
         }
