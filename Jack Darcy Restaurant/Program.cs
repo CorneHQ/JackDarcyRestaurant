@@ -22,7 +22,7 @@ namespace Jack_Darcy_Restaurant
                 $"                  Location    \n" +
                 $"                              \n" +
                 $"Address                     : Wijnhaven 107\n" +
-                $"ZipCode                     : 3011 WN, Rotterdam\n" +
+                $"Zip Code                    : 3011 WN, Rotterdam\n" +
                 $"Country                     : The Netherlands\n" +
                 $"\n\n" +
                 $"             _________________\n" +
@@ -40,7 +40,7 @@ namespace Jack_Darcy_Restaurant
                 $"                  Contact \n" +
                 $"                          \n" +
                 $"Telephone Number          : 010 0000000               \n" +
-                $"Number for foreigners     : +3100 0 0000000           \n" +
+                $"Number For Foreigners     : +3100 0 0000000           \n" +
                 $"E-mail                    : hogeschool@hr.nl          \n" +
                 $"Facebook                  : https://www.facebook.com  \n" +
                 $"Instagram                 : https://www.instagram.com \n" +
