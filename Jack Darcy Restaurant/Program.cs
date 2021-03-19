@@ -25,14 +25,15 @@ namespace Jack_Darcy_Restaurant
                 $"ZipCode                     : 3011 WN, Rotterdam\n" +
                 $"Country                     : The Netherlands\n" +
                 $"\n\n" +
-                $"                ___________\n" +
-                $"                Description\n" +
-                $"The location is near subwaystation Blaak. heel makkelijke te \n" +
-                $"bereiken met metro als je vanaf blaak uitstapt en \n" +
-                $"richting beurs loopt via hoogstraat. kom je op een \n" +
-                $"gegeven moment langs McDonald. bij de McDonald links \n" +
-                $"de straat in. vervolgens recht door lopen tot dat \n" +
-                $"je een brug ziet en voor de rechts afslaan.\n " +
+                $"             _________________\n" +
+                $"             Travel Directions\n\n" +
+                $"The location is near subway station Blaak.     \n" +
+                $"If you get off at station Blaak and walk      \n" +
+                $"towards station Beurs via Hoogstraat. You     \n" +
+                $"will pass by McDonald at some point. At the   \n" +
+                $"McDonald to the left. Continue straight on    \n" +
+                $"until you see a bridge and turn right before  \n" +
+                $"the bridge.                                   \n" +
                 $"\n\n" +
                 $"                  _______\n" +
                 $"                  Contact\n" +
