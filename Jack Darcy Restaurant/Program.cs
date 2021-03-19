@@ -6,10 +6,9 @@ namespace Jack_Darcy_Restaurant
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             Console.WriteLine($"" +
                 $"              _______________\n" +
-                $"              Openings tijden\n" +
+                $"              Opening Hours\n"+
                 $"                       \n" +
                 $"Monday                12:00 - 16:00 and 18:00 - 00:00\n" +
                 $"Tuesday               12:00 - 16:00 and 18:00 - 00:00\n" +
@@ -25,6 +24,8 @@ namespace Jack_Darcy_Restaurant
                 $"Address                     : Wijnhaven 107\n" +
                 $"ZipCode                     : 3011 WN, Rotterdam\n" +
                 $"Country                     : The Netherlands\n" +
+                $"\n\n" +
+                $"                ___________\n" +
                 $"                Description\n" +
                 $"The location is near subwaystation Blaak. heel makkelijke te \n" +
                 $"bereiken met metro als je vanaf blaak uitstapt en \n" +
@@ -36,12 +37,12 @@ namespace Jack_Darcy_Restaurant
                 $"                  _______\n" +
                 $"                  Contact\n" +
                 $"                  \n" +
-                $"Telephone-number          : 010 0000000\n" +
+                $"Telephone Number          : 010 0000000\n" +
                 $"E-mail                    : hogeschool@hr.nl \n" +
                 $"Facebook                  : https://www.facebook.com \n" +
                 $"Instagram                 : https://www.instagram.com \n" +
                 $"Twitter                   : https://twitter.com/ \n" +
-                $"pinkterest                : https://www.pinterest.com \n" +
+                $"Pinterest           : https://www.pinterest.com \n" +
                 $"");
 
         }
