@@ -7,13 +7,13 @@ namespace Jack_Darcy_Restaurant
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Jack Darcy's! Type one of the following options to go to the desired page: \n" +
-                $"About \n" +
-                $"Login \n" +
-                $"Register");
-            Handler(0);
+                $"> About \n" +
+                $"> Login \n" +
+                $"> Register");
+            Handler(0, 0);
         }
 
-        static void Handler(int page)
+        static void Handler(int page, int wrongCommands)
         {
             string input = Console.ReadLine();
             if (page == 0)
@@ -66,10 +66,10 @@ namespace Jack_Darcy_Restaurant
                     {
                         Console.Clear();
                         Console.WriteLine("Type one of the following options and press enter to go to the desired page: \n" +
-                            $"About \n" +
-                            $"Login \n" +
-                            $"Register");
-                        Handler(0);
+                            $"> About \n" +
+                            $"> Login \n" +
+                            $"> Register");
+                        Handler(0, 0);
                     }
                 }
                 else if (input.ToLower() == "login")
@@ -83,12 +83,17 @@ namespace Jack_Darcy_Restaurant
                 else
                 {
                     Console.Clear();
+                    wrongCommands = wrongCommands + 1;
                     Console.WriteLine(" > '" + input + "' wasn't recognised as a command, please try again\n" +
                         $"Type one of the following options and press enter to go to the desired page: \n" +
-                        $"About \n" +
-                        $"Login \n" +
-                        $"Register");
-                    Handler(0);
+                        $"> About \n" +
+                        $"> Login \n" +
+                        $"> Register");
+                    if (wrongCommands >= 3)
+                    {
+                        Console.WriteLine("(For example, if you want to go to the login page, you should type 'login' without the apostrophes and hit enter)");
+                    }
+                    Handler(0, wrongCommands);
                 }
             }
         }
@@ -103,7 +108,7 @@ namespace Jack_Darcy_Restaurant
             }
             else
             {
-                Handler(1);
+                Handler(1, 0);
             }
             Console.WriteLine("Password: ");
             if (Console.ReadLine() != "")
@@ -120,7 +125,7 @@ namespace Jack_Darcy_Restaurant
             }
             else
             {
-                Handler(1);
+                Handler(1, 0);
             }
             Console.WriteLine("Password: ");
             if (Console.ReadLine() != "")
