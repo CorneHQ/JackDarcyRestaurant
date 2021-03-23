@@ -6,4 +6,8 @@
     <RootNamespace>Jack_Darcy_Restaurant</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Utils\Class1.cs" />
+  </ItemGroup>
+
 </Project>
