@@ -1,4 +1,6 @@
-﻿using Jack_Darcy_Restaurant.Utils;
+﻿using Jack_Darcy_Restaurant.Models;
+using Jack_Darcy_Restaurant.Utils;
+using JsonFlatFileDataStore;
 using System;
 
 namespace Jack_Darcy_Restaurant
@@ -7,7 +9,7 @@ namespace Jack_Darcy_Restaurant
     {
         static void Main(string[] args)
         {
-            PageHandler.switchPage(3);
+            PageHandler.switchPage(-1);
         }
     }
 }
