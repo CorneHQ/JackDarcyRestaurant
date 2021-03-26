@@ -53,7 +53,7 @@ namespace Jack_Darcy_Restaurant.Pages
             string Back = Console.ReadLine();
             if(Back == "" ^ Back != "")
             {
-                PageHandler.switchPage(3);
+                PageHandler.switchPage(-1);
             }
         }
     }
