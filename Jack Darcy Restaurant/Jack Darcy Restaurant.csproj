@@ -6,4 +6,9 @@
     <RootNamespace>Jack_Darcy_Restaurant</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+    <PackageReference Include="JsonFlatFileDataStore" Version="2.2.2" />
+  </ItemGroup>
+
 </Project>

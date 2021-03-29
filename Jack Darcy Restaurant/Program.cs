@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jack_Darcy_Restaurant.Utils;
+using System;
 
 namespace Jack_Darcy_Restaurant
 {
@@ -6,8 +7,7 @@ namespace Jack_Darcy_Restaurant
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("devin was hier");
+            PageHandler.switchPage(3);
         }
     }
 }
