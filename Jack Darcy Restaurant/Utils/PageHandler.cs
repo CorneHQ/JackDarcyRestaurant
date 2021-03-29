@@ -13,16 +13,23 @@ namespace Jack_Darcy_Restaurant.Utils
             if (newPage == 0)
             {
                 About.Show();
-            } else if  (newPage == 1)
+            }
+            else if (newPage == 1)
             {
                 Console.WriteLine("Login Comes Here");
-            } else if (newPage == 2)
+            }
+            else if (newPage == 2)
             {
                 Console.WriteLine("Register Comes Here");
-            } else if (newPage == 3) 
+            }
+            else if (newPage == 3) {
+                Menus.ShowMenus();
+            }
+            else if (newPage == -1)
             {
                 MainMenu.Show();
-            } else
+            }
+            else
             {
                 Console.WriteLine("\n");
                 Console.BackgroundColor = ConsoleColor.Red;
