@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jack_Darcy_Restaurant.Model
+namespace Jack_Darcy_Restaurant.Models
 {
     class Manager
     {
-        public static int Role_id { get; set; }
+        public static Role Role { get; set; }
     }
 }

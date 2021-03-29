@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jack_Darcy_Restaurant.Model
+namespace Jack_Darcy_Restaurant.Models
 {
     public class User
     {
@@ -25,7 +25,8 @@ namespace Jack_Darcy_Restaurant.Model
         {
             if (Name == vName && Password == vPassword)
             {
-                Manager.Role_id = Role_Id;
+                Manager.Role = DB.GetRole(Role_Id);
+                Console.WriteLine(Manager.Role);
                 return true;
             }
 
