@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using JsonFlatFileDataStore;
+﻿using JsonFlatFileDataStore;
 using System.Linq;
 
 namespace Jack_Darcy_Restaurant.Models
@@ -32,7 +29,8 @@ namespace Jack_Darcy_Restaurant.Models
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Role>();
-            Role r = (collection.AsQueryable().Where(e => e.Id == ID).ToArray<Role>())[0];
+            if (collection.AsQueryable().Count() != 4) RoleInit(); 
+            Role r = collection.AsQueryable().FirstOrDefault(e => e.Id == ID);
             return r;
         }
 

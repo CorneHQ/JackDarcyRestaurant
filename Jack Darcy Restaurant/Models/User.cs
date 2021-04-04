@@ -26,6 +26,7 @@ namespace Jack_Darcy_Restaurant.Models
             if (Name == vName && Password == vPassword)
             {
                 Manager.Role = DB.GetRole(Role_Id);
+                Manager.User = this;
                 Console.WriteLine(Manager.Role);
                 return true;
             }

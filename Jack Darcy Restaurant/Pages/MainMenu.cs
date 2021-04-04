@@ -15,9 +15,9 @@ namespace Jack_Darcy_Restaurant.Pages
 
             s += $"[0] About \n";
 
-            if (Manager.Role == null) s += $"[1] Login \n";
+            if (Manager.User == null) s += $"[1] Login \n";
 
-            if (Manager.Role == null) s += $"[2] Register \n";
+            if (Manager.User == null) s += $"[2] Register \n";
 
             s += $"[3] Show Menus";
 

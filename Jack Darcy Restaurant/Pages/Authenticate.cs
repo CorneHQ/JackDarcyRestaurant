@@ -4,7 +4,7 @@ using Jack_Darcy_Restaurant.Utils;
 
 namespace Jack_Darcy_Restaurant.Pages
 {
-        
+
     class Authenticate
     {
 
@@ -15,7 +15,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.WriteLine("Enter your Username:");
             string username = Console.ReadLine();
 
-            Console.Clear();    
+            Console.Clear();
             Console.WriteLine("Enter your Password:");
             string password = "";
             bool stop = true;
@@ -27,6 +27,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
                 else if (temp == ConsoleKey.Backspace)
                 {
+                    if (password.Length == 0) continue;
                     password = password.Remove(password.Length - 1);
                 }
                 else
@@ -34,7 +35,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     password += temp.ToString().ToLower();
                 }
             }
-            
+
 
             Console.Clear();
             User[] users = DB.LoadUser();
@@ -44,7 +45,7 @@ namespace Jack_Darcy_Restaurant.Pages
 
                 foreach (User user in users)
                 {
-                    if (user.Validate(username ,password))
+                    if (user.Validate(username, password))
                     {
                         // set global role here user.role;
                         validate = true;
@@ -59,8 +60,8 @@ namespace Jack_Darcy_Restaurant.Pages
             if (!validate)
             {
                 Console.WriteLine("Failed wrong Username/Password");
-                return; 
-                
+                return;
+
             }
 
             Console.WriteLine($"Welcome {username}, {Manager.Role.Name}");
@@ -84,7 +85,8 @@ namespace Jack_Darcy_Restaurant.Pages
                 if (temp == ConsoleKey.Enter)
                 {
                     stop = false;
-                } else if(temp == ConsoleKey.Backspace) {
+                } else if (temp == ConsoleKey.Backspace) {
+                    if (password.Length == 0) continue;
                     password = password.Remove(password.Length - 1);
                 } else
                 {
@@ -96,10 +98,15 @@ namespace Jack_Darcy_Restaurant.Pages
             string email = Console.ReadLine();
 
             Console.Clear();
-            User user = new User(1, username, password, email, 0);
-            if(DB.SetUser(user))
+            if (username == "" || password == "" || email == "")
             {
-                user.Validate(username, password);
+                Console.WriteLine("No empty field allowed");
+                return;
+            }
+            User user = new User(1, username, password, email, 0);
+            if(DB.SetUser(user) && user.Validate(username, password))
+            {
+                Console.WriteLine(Manager.Role);
                 Console.WriteLine($"Welcome {username}, {Manager.Role.Name}");
             } else
             {
