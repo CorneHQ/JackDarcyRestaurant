@@ -40,6 +40,12 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             User[] users = DB.LoadUser();
             bool validate = false;
+            if(users.Length == 0)
+            {
+                Console.WriteLine("Failed no user exist");
+                return;
+            }
+            
             if (username != "" && password != "")
             {
 

@@ -27,7 +27,6 @@ namespace Jack_Darcy_Restaurant.Models
             {
                 Manager.Role = DB.GetRole(Role_Id);
                 Manager.User = this;
-                Console.WriteLine(Manager.Role);
                 return true;
             }
 
