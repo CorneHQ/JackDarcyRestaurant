@@ -116,7 +116,6 @@ namespace Jack_Darcy_Restaurant.Pages
             User user = new User(1, username, password, email, 0);
             if(DB.SetUser(user) && user.Validate(username, password))
             {
-                Console.WriteLine(Manager.Role);
                 Console.WriteLine($"Welcome {username}, {Manager.Role.Name}");
             } else
             {
