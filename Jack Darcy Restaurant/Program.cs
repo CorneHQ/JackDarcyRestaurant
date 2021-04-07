@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Jack_Darcy_Restaurant.Models;
 using Jack_Darcy_Restaurant.Utils;
 using JsonFlatFileDataStore;

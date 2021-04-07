@@ -1,4 +1,4 @@
-﻿using Jack_Darcy_Restaurant.Utils;
+using Jack_Darcy_Restaurant.Utils;
 using Jack_Darcy_Restaurant.Models;
 using System;
 using System.Collections.Generic;
