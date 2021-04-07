@@ -80,7 +80,7 @@ namespace Jack_Darcy_Restaurant.Pages
             {
                 collection = collection.Where(m => m.Name.Contains(filterName));
             }
-
+          
             return collection;
         }
 
@@ -96,6 +96,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 Console.WriteLine("\n");
                 showError = "";
             }
+
             IEnumerable<MenuItem> menuItems = GetMenuItems(menuId);
             ConsoleTable menuTable = new ConsoleTable("Name", "Price", "Vegan", "Category");
             if (!menuItems.Any())
@@ -110,7 +111,6 @@ namespace Jack_Darcy_Restaurant.Pages
             }
             menuTable.Write(Format.Alternative);
             Console.WriteLine("Please press 'Backspace' to customize the filters or press 'Enter' to go back to the main menu or press 'Esc' to go back to the menu list");
-
             while (true)
             {
                 if (Console.ReadKey().Key == ConsoleKey.Enter)

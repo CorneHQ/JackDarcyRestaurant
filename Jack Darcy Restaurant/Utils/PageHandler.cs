@@ -1,4 +1,5 @@
-﻿using Jack_Darcy_Restaurant.Pages;
+using Jack_Darcy_Restaurant.Pages;
+using Jack_Darcy_Restaurant.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,11 +17,11 @@ namespace Jack_Darcy_Restaurant.Utils
             }
             else if (newPage == 1)
             {
-                Console.WriteLine("Login Comes Here");
+                Authenticate.Login();
             }
             else if (newPage == 2)
             {
-                Console.WriteLine("Register Comes Here");
+                Authenticate.Register();
             }
             else if (newPage == 3) {
                 Menus.ShowMenus();
