@@ -43,6 +43,7 @@ namespace Jack_Darcy_Restaurant.Pages
             if(users.Length == 0)
             {
                 Console.WriteLine("Failed no user exist");
+                Program.ToMainMenu();
                 return;
             }
             
@@ -61,17 +62,19 @@ namespace Jack_Darcy_Restaurant.Pages
             } else
             {
                 Console.WriteLine("blank Username/Password");
+                Program.ToMainMenu();
                 return;
             }
             if (!validate)
             {
                 Console.WriteLine("Failed wrong Username/Password");
+                Program.ToMainMenu();
                 return;
 
             }
 
             Console.WriteLine($"Welcome {username}, {Manager.Role.Name}");
-            PageHandler.switchPage(-1);
+            Program.ToMainMenu();
         }
 
         public static void Register()
@@ -107,6 +110,7 @@ namespace Jack_Darcy_Restaurant.Pages
             if (username == "" || password == "" || email == "")
             {
                 Console.WriteLine("No empty field allowed");
+                Program.ToMainMenu();
                 return;
             }
             User user = new User(1, username, password, email, 0);
@@ -119,7 +123,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 Console.WriteLine("Something went wrong. Try again");
             }
 
-            PageHandler.switchPage(-1);
+            Program.ToMainMenu();
         }
     }
 

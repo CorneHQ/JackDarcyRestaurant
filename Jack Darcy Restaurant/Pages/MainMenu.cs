@@ -10,7 +10,6 @@ namespace Jack_Darcy_Restaurant.Pages
     {
         public static void Show()
         {
-            Console.WriteLine(Manager.Role == new Role());
             string s = "Welcome to Jack Darcy's! Choose one of the following options to go to the desired page: \n";
 
             s += $"[0] About \n";

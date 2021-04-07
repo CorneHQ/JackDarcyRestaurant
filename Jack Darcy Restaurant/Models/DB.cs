@@ -29,7 +29,6 @@ namespace Jack_Darcy_Restaurant.Models
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Role>();
-            if (collection.AsQueryable().Count() != 4) RoleInit(); 
             Role r = collection.AsQueryable().FirstOrDefault(e => e.Id == ID);
             return r;
         }
@@ -38,6 +37,7 @@ namespace Jack_Darcy_Restaurant.Models
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Role>();
+            collection.DeleteMany(e => e.Id > -1);
             Role[] roles =
             {
 
