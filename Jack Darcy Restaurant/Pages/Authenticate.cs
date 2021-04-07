@@ -114,12 +114,19 @@ namespace Jack_Darcy_Restaurant.Pages
                 return;
             }
             User user = new User(1, username, password, email, 0);
-            if(DB.SetUser(user) && user.Validate(username, password))
+            if (DB.SetUser(user))
             {
-                Console.WriteLine($"Welcome {username}, {Manager.Role.Name}");
+                if (user.Validate(username, password))
+                {
+                    Console.WriteLine($"Welcome {username}, {Manager.Role.Name}");
+                }
+                else
+                {
+                    Console.WriteLine("Something went wrong. Try again");
+                }
             } else
             {
-                Console.WriteLine("Something went wrong. Try again");
+                Console.WriteLine("Not a unique email");
             }
 
             Program.ToMainMenu();
