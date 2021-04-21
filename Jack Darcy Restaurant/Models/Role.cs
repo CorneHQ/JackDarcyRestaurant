@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Jack_Darcy_Restaurant.Models
 {
-    class Role
+    public class Role
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public bool Add_Reservation { get; set; }
         public bool See_Reservation { get; set; }
         public bool See_All_Reservations { get; set; }

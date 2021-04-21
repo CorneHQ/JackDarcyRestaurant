@@ -11,5 +11,26 @@ namespace Jack_Darcy_Restaurant.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+
+        public User(int cId, string cName, string cPassword, string cEmail, int cRoles)
+        {
+            Id = cId;
+            Name = cName;
+            Password = cPassword;
+            Email = cEmail;
+            Role_Id = cRoles;
+        }
+
+        public bool Validate(string vName, string vPassword)
+        {
+            if (Name == vName && Password == vPassword)
+            {
+                Manager.Role = DB.GetRole(Role_Id);
+                Manager.User = this;
+                return true;
+            }
+
+            return false;
+        }
     }
 }
