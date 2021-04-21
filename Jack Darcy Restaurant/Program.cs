@@ -9,21 +9,11 @@ namespace Jack_Darcy_Restaurant
     {
         static void Main(string[] args)
         {
-            Init();
+            DB.RoleInit();
+            DB.UserInit();
             PageHandler.switchPage(-1);
         }
 
-        static void Init()
-        {
-            DB.RoleInit();
-            var store = new DataStore("data.json");
-            var collection = store.GetCollection<User>();
-            if(collection.Count == 0)
-            {
-                User user = new User(0, "owner", "secret", "owner@jackdarcy.com", 1);
-                DB.SetUser(user);
-            }
-        }
         public static void ToMainMenu()
         {
             Console.WriteLine("Press enter to go main menu");

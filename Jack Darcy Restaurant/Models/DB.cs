@@ -114,5 +114,16 @@ namespace Jack_Darcy_Restaurant.Models
             collection.InsertMany(roles);
 
         }
+
+        public static void UserInit()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<User>();
+            if (collection.Count == 0)
+            {
+                User user = new User(0, "owner", "secret", "owner@jackdarcy.com", 1);
+                SetUser(user);
+            }
+        }
     }
 }
