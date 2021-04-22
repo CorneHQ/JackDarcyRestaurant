@@ -13,6 +13,7 @@ namespace Jack_Darcy_Restaurant.Models
         public DateTime Reservation_Date { get; set; }
         public TimeSpan From { get; set; }
         public TimeSpan Till { get; set; }
+        public string Code { get; set; }
         
     }
 }
