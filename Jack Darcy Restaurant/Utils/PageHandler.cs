@@ -29,6 +29,9 @@ namespace Jack_Darcy_Restaurant.Utils
             else if(Manager.Role != null && (Manager.Role.Add_Reservation_Customer || Manager.Role.See_Reservation || Manager.Role.Add_Reservation || Manager.Role.See_All_Reservations) && newPage == 4)
             {
                 //new page  
+                Console.WriteLine("Reservation page");
+                Permisions.CheckPermisions(1);
+                MainMenu.Show();
             }
             else if (newPage == -1)
             {
