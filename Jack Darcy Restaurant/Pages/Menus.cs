@@ -18,6 +18,7 @@ namespace Jack_Darcy_Restaurant.Pages
 
         public static void ShowMenus()
         {
+            Permisions.CheckPermisions(4);
             IEnumerable<Menu> menus = GetMenus();
 
             if(showError != "")

@@ -15,16 +15,23 @@ namespace Jack_Darcy_Restaurant.Utils
             {
                 About.Show();
             }
-            else if (newPage == 1)
+            else if (Manager.User == null && newPage == 1)
             {
                 Authenticate.Login();
             }
-            else if (newPage == 2)
+            else if (Manager.User == null && newPage == 2)
             {
                 Authenticate.Register();
             }
             else if (newPage == 3) {
                 Menus.ShowMenus();
+            } 
+            else if(Manager.Role != null && (Manager.Role.Add_Reservation_Customer || Manager.Role.See_Reservation || Manager.Role.Add_Reservation || Manager.Role.See_All_Reservations) && newPage == 4)
+            {
+                //new page  
+                Console.WriteLine("Reservation page");
+                Permisions.CheckPermisions(1);
+                MainMenu.Show();
             }
             else if (Manager.User != null && newPage == 5)
             {
