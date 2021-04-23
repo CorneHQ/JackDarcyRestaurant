@@ -133,10 +133,17 @@ namespace Jack_Darcy_Restaurant.Pages
 
             Program.ToMainMenu();
         }
+
+        public static void Logout()
+        {
+            Console.Clear();
+            Console.WriteLine("Logout");
+            Manager.Role = null;
+            Manager.User = null;
+            Program.ToMainMenu();
+        }
+
     }
-
-    
-
  
 
     

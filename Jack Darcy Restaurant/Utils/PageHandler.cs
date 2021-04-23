@@ -33,6 +33,10 @@ namespace Jack_Darcy_Restaurant.Utils
                 Permisions.CheckPermisions(1);
                 MainMenu.Show();
             }
+            else if (Manager.User != null && newPage == 5)
+            {
+                Authenticate.Logout();
+            }
             else if (newPage == -1)
             {
                 MainMenu.Show();
