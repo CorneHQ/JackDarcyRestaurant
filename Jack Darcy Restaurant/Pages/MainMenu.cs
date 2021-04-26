@@ -20,7 +20,8 @@ namespace Jack_Darcy_Restaurant.Pages
 
             s += $"[3] Show Menus \n";
             if (Manager.Role != null ) s += $"[4] Reservations\n";
-            if (Manager.User != null) s += $"[5] Logout";
+            if (Manager.User != null) s += $"[5] Logout\n";
+            if (Manager.Role != null && Manager.Role.Name.ToLower() == "owner") s += $"[6] change user role";
 
             Console.WriteLine(s);
 
