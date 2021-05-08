@@ -40,6 +40,9 @@ namespace Jack_Darcy_Restaurant.Utils
             else if (Manager.User != null && newPage == 6)
             {
                 Admin.ChangeUser();
+            } else if(newPage == 7)
+            {
+                Payment.Pay(50);
             }
             else if (newPage == -1)
             {
