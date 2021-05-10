@@ -23,8 +23,9 @@ namespace Jack_Darcy_Restaurant.Utils
             {
                 Authenticate.Register();
             }
-            else if (newPage == 3) {
-                Menus.ShowMenus();
+            else if (newPage == 3) 
+            {
+                Menus.PageHandlerMenu();
             }
             else if (Manager.User != null && newPage == 5)
             {

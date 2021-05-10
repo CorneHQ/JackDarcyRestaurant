@@ -16,6 +16,8 @@ namespace Jack_Darcy_Restaurant.Pages
         private static string filterVegan = "all";
         private static string filterName = "all";
 
+
+
         public static void ShowMenus()
         {
             IEnumerable<Menu> menus = GetMenus();
@@ -168,6 +170,70 @@ namespace Jack_Darcy_Restaurant.Pages
                         ShowMenu(menuId);
                     }
                 }
+            }
+        }
+
+        static void AddMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome in the addMenu Fearture");
+            
+
+        }
+        
+        public static void PageHandlerMenu()
+        {
+            Console.Clear();
+            string s = $" choose your feature \n ";
+            s += $"[0] Go back \n";
+            s += $"[1] Showing the menu \n";
+            s += $"[2] Add menu \n";
+            s += $"[3] Remove Menu \n ";
+            s += $"[4] Add Product to existing Menu \n";
+            s += $"[5] Remove product from existing Menu \n "; 
+
+
+
+            Console.WriteLine(s);
+            string input = Console.ReadLine();// neemt input
+            bool test = int.TryParse(input, out int page); //kijken of string kan omzetten naar nummer
+            if (test)
+            {
+                if (page == 0)
+                {
+                    Console.Clear(); // just in case moet checken of dit nodig is
+                    MainMenu.Show();
+                }
+                else if (page == 1)
+                {
+                    Menus.ShowMenus();
+                }
+                else if (page == 2)
+                {
+                    Menus.AddMenu();
+                }
+                else if (page == 3)
+                {
+                    ;
+                }
+                else if (page == 4)
+                {
+                    ;
+                }
+                else
+                {
+                    Console.WriteLine("" +
+                        "Sorry this is not a page \n" +
+                        "   Please Try Again");
+                    Menus.PageHandlerMenu();
+                }               
+            }
+            else
+            {
+                Console.WriteLine("" +
+                    "That's not a valid number for a page \n" +
+                    "           Please Try again");
+                Menus.PageHandlerMenu();
             }
         }
     }
