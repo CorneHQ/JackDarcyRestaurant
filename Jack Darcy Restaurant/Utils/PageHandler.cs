@@ -39,7 +39,7 @@ namespace Jack_Darcy_Restaurant.Utils
             }
             else if (Manager.User != null && newPage == 6)
             {
-                Admin.ChangeUser();
+                Admin.ManageUsers();
             }
             else if (newPage == -1)
             {
