@@ -173,7 +173,7 @@ namespace Jack_Darcy_Restaurant.Pages
             }
         }
 
-        static void AddMenu()
+        static void AddMenu() // note voor devin json de data is opgeslagen in een array in een object 
         {
             Console.Clear();
             var store = new DataStore("data.json");
@@ -182,17 +182,24 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.WriteLine("Welcome in the addMenu Fearture");
             Console.WriteLine("Please Enter Menu Name"); 
             string name = Console.ReadLine();
-            //Menu menu = new Menu(total, name); // moet uitvogelen wat hier fout gaat
-            Console.WriteLine($"totaal aan aantal dingen???{total} \n naam van menu{name}");
+             /* Menu menu[] =
+                {
+                new Menu {
+                    Id = total,
+                    Name = name
+                } */
+             // moet uitvogelen wat hier fout gaat
+            Console.WriteLine($"totaal aan aantal dingen???  {total} \n naam van menu   {name}");
             Console.WriteLine("Still in testing");
-
+            Console.ReadLine();
+            Menus.PageHandlerMenu();
 
         }
         
         public static void PageHandlerMenu()
         {
             Console.Clear();
-            string s = $" choose your feature \n ";
+            string s = $"choose your feature \n";
             s += $"[0] Go back \n";
             s += $"[1] Showing the menu \n";
             s += $"[2] Add menu \n";
