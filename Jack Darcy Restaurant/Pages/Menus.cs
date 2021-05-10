@@ -176,8 +176,16 @@ namespace Jack_Darcy_Restaurant.Pages
         static void AddMenu()
         {
             Console.Clear();
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Menu>();
+            int total = collection.Count;
             Console.WriteLine("Welcome in the addMenu Fearture");
-            
+            Console.WriteLine("Please Enter Menu Name"); 
+            string name = Console.ReadLine();
+            //Menu menu = new Menu(total, name); // moet uitvogelen wat hier fout gaat
+            Console.WriteLine($"totaal aan aantal dingen???{total} \n naam van menu{name}");
+            Console.WriteLine("Still in testing");
+
 
         }
         
@@ -188,9 +196,9 @@ namespace Jack_Darcy_Restaurant.Pages
             s += $"[0] Go back \n";
             s += $"[1] Showing the menu \n";
             s += $"[2] Add menu \n";
-            s += $"[3] Remove Menu \n ";
+            s += $"[3] Remove Menu \n";
             s += $"[4] Add Product to existing Menu \n";
-            s += $"[5] Remove product from existing Menu \n "; 
+            s += $"[5] Remove product from existing Menu \n"; 
 
 
 
@@ -206,33 +214,50 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
                 else if (page == 1)
                 {
+                    Console.Clear();
                     Menus.ShowMenus();
                 }
                 else if (page == 2)
                 {
-                    Menus.AddMenu();
+                    // hier moet dus een soort van if statement staan geld voor elke statement
+                    Menus.AddMenu(); // moet eerst checken of ik de permission hier heb 
                 }
                 else if (page == 3)
                 {
-                    ;
+                    Console.Clear();
+                    Console.WriteLine("\n\n TESTING PAGE 3 EN DAN REFRESH PAGE \n\n");
+                    Console.ReadLine();
+                    Console.Clear();
+                    Menus.PageHandlerMenu();
+
                 }
                 else if (page == 4)
                 {
-                    ;
+                    Console.Clear();
+                    Console.WriteLine("\n\n TESTING PAGE 4 EN DAN REFRESH PAGE \n\n");
+                    Console.ReadLine();
+                    Console.Clear();
+                    Menus.PageHandlerMenu();
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("" +
                         "Sorry this is not a page \n" +
                         "   Please Try Again");
+                    Console.ReadLine();
+                    Console.Clear();
                     Menus.PageHandlerMenu();
                 }               
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("" +
                     "That's not a valid number for a page \n" +
                     "           Please Try again");
+                Console.ReadLine();
+                Console.Clear();
                 Menus.PageHandlerMenu();
             }
         }
