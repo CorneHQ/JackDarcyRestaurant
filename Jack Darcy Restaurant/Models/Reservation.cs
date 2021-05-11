@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Jack_Darcy_Restaurant.Models
 {
-    class Reservation
+    public class Reservation
     {
 
         public int Id { get; set; }

@@ -1,4 +1,5 @@
-﻿using Jack_Darcy_Restaurant.Utils;
+﻿using Jack_Darcy_Restaurant.Models;
+using Jack_Darcy_Restaurant.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +34,13 @@ namespace Jack_Darcy_Restaurant.Pages
                     if (Page == 0)
                         addReservation();
                     else if (Page == 1)
-                        seeReservations();
+                        if (Manager.Role.See_All_Reservations)
+                            seeAllReservations();
+                        else
+                            seeReservations();
                 }
             else
             {
-                addError("Page could not be found!");
                 addError("Page could not be found!");
                 PageHandler.switchPage(4);
             }
@@ -75,8 +78,12 @@ namespace Jack_Darcy_Restaurant.Pages
 
         private static void seeReservations()
         {
-            Console.Clear();
-            Console.WriteLine("See reservations");
+            ReservationList.showTable();
+        }
+
+        private static void seeAllReservations()
+        {
+            ReservationList.showAllTable();
         }
     }
 }
