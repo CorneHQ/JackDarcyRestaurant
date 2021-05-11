@@ -25,6 +25,21 @@ namespace Jack_Darcy_Restaurant.Models
             return true;
         }
 
+        public static bool UpdateUser(User user)
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<User>();
+            collection.ReplaceOne(user.Id, user);
+            User dbUser = collection.AsQueryable().FirstOrDefault(e => e.Id == user.Id);
+            if (user.Id == dbUser.Id
+                        && user.Role_Id == dbUser.Role_Id
+                        && user.Name == dbUser.Name
+                        && user.Email == dbUser.Email
+                        && user.Password == dbUser.Password) return true;
+              
+            return false;
+        }
+
         public static Role GetRole(int ID)
         {
             var store = new DataStore("data.json");
@@ -32,6 +47,23 @@ namespace Jack_Darcy_Restaurant.Models
             Role r = collection.AsQueryable().FirstOrDefault(e => e.Id == ID);
             return r;
         }
+
+        public static Role GetRole(string roleName)
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Role>();
+            Role r = collection.AsQueryable().FirstOrDefault(e => e.Name == roleName);
+            return r;
+        }
+
+        public static Role[] GetAllRole()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Role>();
+            Role[] r = collection.AsQueryable().ToArray();
+            return r;
+        }
+
 
         public static void RoleInit()
         {
@@ -113,6 +145,17 @@ namespace Jack_Darcy_Restaurant.Models
 
             collection.InsertMany(roles);
 
+        }
+
+        public static void UserInit()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<User>();
+            if (collection.Count == 0)
+            {
+                User user = new User(0, "owner", "secret", "owner@jackdarcy.com", 1);
+                SetUser(user);
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Jack_Darcy_Restaurant.Pages
         public static void Login()
         {
             Console.Clear();
+            Permisions.CheckPermisions(0);
             Console.WriteLine("login");
             Console.WriteLine("Enter your Username:");
             string username = Console.ReadLine();
@@ -80,6 +81,7 @@ namespace Jack_Darcy_Restaurant.Pages
         public static void Register()
         {
             Console.Clear();
+            Permisions.CheckPermisions(0);
             Console.WriteLine("register");
             Console.WriteLine("Enter your Username:");
             string username = Console.ReadLine();
@@ -131,10 +133,17 @@ namespace Jack_Darcy_Restaurant.Pages
 
             Program.ToMainMenu();
         }
+
+        public static void Logout()
+        {
+            Console.Clear();
+            Console.WriteLine("Logout");
+            Manager.Role = null;
+            Manager.User = null;
+            Program.ToMainMenu();
+        }
+
     }
-
-    
-
  
 
     
