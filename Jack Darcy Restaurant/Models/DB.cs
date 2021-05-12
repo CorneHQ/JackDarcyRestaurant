@@ -125,5 +125,42 @@ namespace Jack_Darcy_Restaurant.Models
                 SetUser(user);
             }
         }
+        public static void MenuInit()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Menu>();
+            Menu[] menu =
+            {
+                new Menu
+                {
+                    Id = 0,
+                    Name = "namestring1"
+                },
+                new Menu
+                {
+                    Id = 1,
+                    Name = "Menu name 2"
+                },
+                new Menu
+                {
+                    Id = 1,
+                    Name = "Menu name 3"
+                },
+                new Menu
+                {
+                    Id = 1,
+                    Name = "Menu name 4"
+                },
+                new Menu
+                {
+                    Id = 1,
+                    Name = "Menu name 5"
+                }
+            };
+            
+
+
+           
+        }
     }
 }
