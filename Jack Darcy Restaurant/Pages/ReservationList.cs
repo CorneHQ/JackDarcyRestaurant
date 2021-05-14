@@ -95,7 +95,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 else if (Console.ReadKey().Key == ConsoleKey.Backspace)
                 {
                     cancelReservation();
-                }
+                } else { }
             }
         }
 
@@ -111,12 +111,20 @@ namespace Jack_Darcy_Restaurant.Pages
             string reservationCode = Console.ReadLine();
 
             DataStore store = new DataStore("data.json");
+            IEnumerable<Models.Reservation> collection;
+            if(Manager.Role.See_All_Reservations)
+            {
+                collection = store.GetCollection<Models.Reservation>()
+                    .AsQueryable()
+                    .Where(item => item.Code == reservationCode);
+            } else
+            {
+                collection = store.GetCollection<Models.Reservation>()
+                    .AsQueryable()
+                    .Where(item => item.User_Id == Manager.User.Id && item.Code == reservationCode);
+            }
 
-            var collection = store.GetCollection<Models.Reservation>()
-                .AsQueryable()
-                .Where(item => item.User_Id == Manager.User.Id && item.Code == reservationCode);
-
-            if(collection == null)
+            if(collection == null || collection.Count() <= 0)
             {
                 addError("Your reservation code cannot be found, please try it again");
                 Console.Clear();
@@ -144,7 +152,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.WriteLine($"Till: {item.Till}\n");
             Console.WriteLine($"Amount of people: {item.Amount_People}\n");
             Console.WriteLine($"Code: {item.Code}\n");
-            Console.WriteLine("Are you sure, you want to cancel this reservation?");
+            Console.WriteLine("Are you sure, you want to cancel this reservation? [Y/N]");
             while(!Console.KeyAvailable)
             {
                 if(Console.ReadKey().Key == ConsoleKey.N)
@@ -159,12 +167,11 @@ namespace Jack_Darcy_Restaurant.Pages
                     var deleteCollection = store.GetCollection<Models.Reservation>();
                     deleteCollection.DeleteOne(item.Id);
                     addSuccessMessage("We cancelled your reservation");
-                    Console.Clear();
                     if (Manager.Role.See_All_Reservations)
                         showAllTable();
                     else
                         showTable();
-                }
+                } else { }
             }
         }
 
