@@ -135,27 +135,27 @@ namespace Jack_Darcy_Restaurant.Models
                 new Menu
                 {
                     Id = 0,
-                    Name = "namestring1"
+                    Name = "Appetizer"
                 },
                 new Menu
                 {
                     Id = 1,
-                    Name = "Menu name 2"
+                    Name = "Main Dish"
                 },
                 new Menu
                 {
-                    Id = 1,
-                    Name = "Menu name 3"
+                    Id = 2,
+                    Name = "Side Dish"
                 },
                 new Menu
                 {
-                    Id = 1,
-                    Name = "Menu name 4"
+                    Id = 3,
+                    Name = "Dessert"
                 },
                 new Menu
                 {
-                    Id = 1,
-                    Name = "Menu name 5"
+                    Id = 4,
+                    Name = "Drinks"
                 }
             };
 
@@ -163,5 +163,145 @@ namespace Jack_Darcy_Restaurant.Models
 
            
         }
+        public static void MenuItemInit()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<MenuItem>();
+            collection.DeleteMany(e => e.Id > -1);
+            MenuItem[] menuitem =
+            {
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 0,
+                    Name = "Sping Rolls",
+                    Price = 3.00,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 0,
+                    Name = "Steamed Buns",
+                    Price = 4.00,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 0,
+                    Name = "Mais Soep",
+                    Price = 2.50,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 1,
+                    Name = "Ramen",
+                    Price = 12.00,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 1,
+                    Name = "Pokebolw",
+                    Price = 10.00,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 1,
+                    Name = "T-Bone Steak",
+                    Price = 25.50,
+                    Vegan = false,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 2,
+                    Name = "Salade Mix",
+                    Price = 5.00,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 2,
+                    Name = "Kim Chi",
+                    Price = 4.00,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 2,
+                    Name = "patat",
+                    Price = 2.60,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 3,
+                    Name = "Fruit Mix",
+                    Price = 3.00,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 3,
+                    Name = "1 Bol of Ice of choice",
+                    Price = 1.50,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 3,
+                    Name = "Random Alcohol Shot",
+                    Price = 5.00,
+                    Vegan = true,
+                    Category = "vezels"
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 4,
+                    Name = "all Drinks",
+                    Price = 2.00,
+                    Vegan = true,
+                    Category = ""
+                },
+                new MenuItem
+                {
+                    Id = 0,
+                    Menu_Id = 4,
+                    Name = "Alcoholic Drinks",
+                    Price = 6.00,
+                    Vegan = true,
+                    Category = ""
+                }
+
+
+            };
+
+            collection.InsertMany(menuitem);
+        }
     }
+
 }

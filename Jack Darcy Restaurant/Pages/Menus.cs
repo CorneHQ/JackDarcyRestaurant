@@ -288,6 +288,19 @@ namespace Jack_Darcy_Restaurant.Pages
             }
             
         }
+        public static void AddProduct()
+        {
+
+        }
+        public static void RemoveProduct()
+        {
+
+        }
+
+        public static void TestingSmallerPagehandler()
+        {
+
+        }
         public static void PageHandlerMenu()
         {
             Console.Clear();
