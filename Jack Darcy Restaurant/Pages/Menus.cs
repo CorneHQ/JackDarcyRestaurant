@@ -176,29 +176,75 @@ namespace Jack_Darcy_Restaurant.Pages
         static void AddMenu() // note voor devin json de data is opgeslagen in een array in een object 
         {
             Console.Clear();
-            var store = new DataStore("data.json");
-            var collection = store.GetCollection<Menu>();
-            int total = collection.Count;
-            Console.WriteLine("Welcome in the addMenu Fearture");
-            Console.WriteLine($"totaal aan aantal dingen???  {total}");
-            Console.WriteLine("Please Enter Menu Name"); 
-            string name = Console.ReadLine();
-            Menu[] menu =
-               {
-                new Menu {
-                    Id = total,
-                    Name = name
+            Console.WriteLine("Welcome to Remove Menu Feature\n");
+            Console.WriteLine("" +
+                "[0] to go back \n" +
+                "[1] To Add Menu \n");
+            string input = Console.ReadLine();
+            bool TestingInput = int.TryParse(input, out int IntInput);
+            if (TestingInput)
+            {
+                if (IntInput == 0)
+                {
+                    Console.Clear();
+                    Menus.PageHandlerMenu();
                 }
-            };
-            collection.InsertMany(menu);
-            total = collection.Count;
-             // moet uitvogelen wat hier fout gaat
-            Console.WriteLine($"totaal aan aantal dingen???  {total} \n naam van menu   {name}");
-            Console.WriteLine("Still in testing");
-            Console.WriteLine("if you see your menu name and the number changing then you succesfully added a menu");
-            Console.ReadLine();
-            Menus.PageHandlerMenu();
+                else if (IntInput == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine(" Welcome in the addMenu Fearture");
+                    Console.WriteLine(" Please Enter Menu Name");
+                    string name = Console.ReadLine();
 
+                    var store = new DataStore("data.json");
+                    var collection = store.GetCollection<Menu>();
+                    int total = collection.Count;
+                    Menu[] menu =
+                       {
+                        new Menu 
+                            {
+                        Id = total,
+                        Name = name
+                            }
+                        };
+                    Console.Clear();
+                    Console.WriteLine(" You have Added Menu\n\n " +
+                        $"Id = {total} \n " +
+                        $"Name = {name} \n ");
+                    collection.InsertMany(menu);
+                    Console.ReadLine();
+                    Menus.PageHandlerMenu();
+
+
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Not a valid number Please Try Again");
+                    Console.ReadLine();
+                    Menus.AddMenu();
+                }
+
+            }
+            else if (!TestingInput)
+            {
+                Console.Clear();
+                Console.WriteLine("Wrong Input Please Try Again");
+                Console.ReadLine();
+                Menus.AddMenu();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine(" ERROR : Wrong input\n Returning to previous screen\n " +
+                    "press Enter");
+                Console.ReadLine();
+                Menus.PageHandlerMenu();
+            }
+
+
+
+            
         }
 
         public static void RemoveMenu()
@@ -290,6 +336,80 @@ namespace Jack_Darcy_Restaurant.Pages
         }
         public static void AddProduct()
         {
+            Console.Clear();
+            Console.WriteLine("Welcome to Add Product Feature\n");
+            Console.WriteLine("" +
+                "[0] to go back \n" +
+                "[1] To Add Product \n");
+            string input = Console.ReadLine();
+            bool TestingInput = int.TryParse(input, out int IntInput);
+            if (TestingInput)
+            {
+                if (IntInput == 0)
+                {
+                    Console.Clear();
+                    Menus.PageHandlerMenu();
+                }
+                else if (IntInput == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine(" Welcome in the add Product Fearture");
+                    Console.WriteLine(" Please Enter Product Name");
+                    string name = Console.ReadLine();
+                    Console.WriteLine(" Please Enter Price (example = 10.10)");
+                    string Price = Console.ReadLine(); 
+                    Console.WriteLine(" Please Enter if the dish is Vegan or not (example = y/n)");
+                    string name = Console.ReadLine(); 
+                    Console.WriteLine(" Please Enter Menu Name");
+                    string name = Console.ReadLine(); 
+                    Console.WriteLine(" Please Enter Menu Name");
+                    string name = Console.ReadLine();
+                    var store = new DataStore("data.json");
+                    var collection = store.GetCollection<Menu>();
+                    int total = collection.Count;
+                    Menu[] menu =
+                       {
+                        new Menu
+                            {
+                        Id = total,
+                        Name = name
+                            }
+                        };
+                    Console.Clear();
+                    Console.WriteLine(" You have Added Menu\n\n " +
+                        $"Id = {total} \n " +
+                        $"Name = {name} \n ");
+                    collection.InsertMany(menu);
+                    Console.ReadLine();
+                    Menus.PageHandlerMenu();
+
+
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Not a valid number Please Try Again");
+                    Console.ReadLine();
+                    Menus.AddProduct();
+                }
+
+            }
+            else if (!TestingInput)
+            {
+                Console.Clear();
+                Console.WriteLine("Wrong Input Please Try Again");
+                Console.ReadLine();
+                Menus.AddProduct();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine(" ERROR : Wrong input\n Returning to previous screen\n " +
+                    "press Enter");
+                Console.ReadLine();
+                Menus.PageHandlerMenu();
+            }
+
 
         }
         public static void RemoveProduct()
