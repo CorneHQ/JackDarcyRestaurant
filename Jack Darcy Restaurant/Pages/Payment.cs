@@ -16,7 +16,7 @@ namespace Jack_Darcy_Restaurant.Pages
             string cardId = Console.ReadLine();
             
             Console.Clear();
-            Console.WriteLine("please enter your expiration date (06/2024)");
+            Console.WriteLine("please enter your expiration date (MM/YYYY)");
             string expiryDate = Console.ReadLine();
             
             Console.Clear();
