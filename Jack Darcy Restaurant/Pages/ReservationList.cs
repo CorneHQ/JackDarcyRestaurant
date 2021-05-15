@@ -86,15 +86,18 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.WriteLine("\n");
             Console.WriteLine("Please press 'Enter' to go back to the main menu or press 'Backspace' to cancel a reservation");
 
-            while (!Console.KeyAvailable)
+            while (true)
             {
-                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                ConsoleKey consoleKey = Console.ReadKey().Key;
+                if (consoleKey == ConsoleKey.Enter)
                 {
                     PageHandler.switchPage(-1);
+                    break;
                 }
-                else if (Console.ReadKey().Key == ConsoleKey.Backspace)
+                else if (consoleKey == ConsoleKey.Backspace)
                 {
                     cancelReservation();
+                    break;
                 } else { }
             }
         }
@@ -153,16 +156,18 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.WriteLine($"Amount of people: {item.Amount_People}\n");
             Console.WriteLine($"Code: {item.Code}\n");
             Console.WriteLine("Are you sure, you want to cancel this reservation? [Y/N]");
-            while(!Console.KeyAvailable)
+            while(true)
             {
-                if(Console.ReadKey().Key == ConsoleKey.N)
+                ConsoleKey keyIN = Console.ReadKey().Key;
+                if (keyIN == ConsoleKey.N)
                 {
                     Console.Clear();
                     if (Manager.Role.See_All_Reservations)
                         showAllTable();
                     else
                         showTable();
-                } else if(Console.ReadKey().Key == ConsoleKey.Y)
+                    break;
+                } else if(keyIN == ConsoleKey.Y)
                 {
                     var deleteCollection = store.GetCollection<Models.Reservation>();
                     deleteCollection.DeleteOne(item.Id);
@@ -171,7 +176,8 @@ namespace Jack_Darcy_Restaurant.Pages
                         showAllTable();
                     else
                         showTable();
-                } else { }
+                    break;
+                }
             }
         }
 
