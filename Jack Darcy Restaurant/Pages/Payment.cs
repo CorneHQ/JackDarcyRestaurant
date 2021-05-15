@@ -44,8 +44,8 @@ namespace Jack_Darcy_Restaurant.Pages
 
             if (sum % 10 != 0)
             {
-                Console.WriteLine("credit not valid");
-                return;
+                Console.WriteLine("Card number not valid");
+                Program.ToMainMenu();
             }
 
             Regex monthCheck = new Regex(@"^(0[0-9]|1[0-2])$");
