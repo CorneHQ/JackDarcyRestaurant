@@ -231,6 +231,18 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.WriteLine("Please enter Id of Menu you wanne delete");
                     string input1 = Console.ReadLine();
                     bool testingInput1 = int.TryParse(input1, out int intinput1);
+                    if (testingInput1)
+                    {
+
+                    }
+                    else if (!testingInput1)
+                    {
+
+                    }
+                    else 
+                    {
+
+                    }
                     collection.DeleteMany(z => z.Id == intinput1);
                     Console.WriteLine("showing new list of Menu");
                     foreach (var x in collection.AsQueryable())
