@@ -180,22 +180,95 @@ namespace Jack_Darcy_Restaurant.Pages
             var collection = store.GetCollection<Menu>();
             int total = collection.Count;
             Console.WriteLine("Welcome in the addMenu Fearture");
+            Console.WriteLine($"totaal aan aantal dingen???  {total}");
             Console.WriteLine("Please Enter Menu Name"); 
             string name = Console.ReadLine();
-             /* Menu menu[] =
-                {
+            Menu[] menu =
+               {
                 new Menu {
                     Id = total,
                     Name = name
-                } */
+                }
+            };
+            collection.InsertMany(menu);
+            total = collection.Count;
              // moet uitvogelen wat hier fout gaat
             Console.WriteLine($"totaal aan aantal dingen???  {total} \n naam van menu   {name}");
             Console.WriteLine("Still in testing");
+            Console.WriteLine("if you see your menu name and the number changing then you succesfully added a menu");
             Console.ReadLine();
             Menus.PageHandlerMenu();
 
         }
-        
+
+        public static void RemoveMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to Remove Menu Feature\n");
+            Console.WriteLine("" +
+                "[0] to go back \n" +
+                "[1] To Delete Menu \n");
+            string input = Console.ReadLine();
+            bool TestingInput = int.TryParse(input, out int IntInput);
+            if (TestingInput)
+            {
+                if (IntInput == 0)
+                {
+                    Console.Clear();
+                    Menus.PageHandlerMenu();
+                }
+                else if (IntInput == 1)
+                {
+                    Console.Clear();
+
+                    var store = new DataStore("data.json");
+                    var collection = store.GetCollection<Menu>();
+                    foreach (var x in collection.AsQueryable())
+                    {
+                        Console.WriteLine($"Id = {x.Id}\n" +
+                            $"Name = {x.Name}\n\n");
+                    }
+                    Console.WriteLine("Please enter Id of Menu you wanne delete");
+                    string input1 = Console.ReadLine();
+                    bool testingInput1 = int.TryParse(input1, out int intinput1);
+                    collection.DeleteMany(z => z.Id == intinput1);
+                    Console.WriteLine("showing new list of Menu");
+                    foreach (var x in collection.AsQueryable())
+                    {
+                        Console.WriteLine($"Id = {x.Id}\n" +
+                            $"Name = {x.Name}\n\n");
+                    }
+                    Console.ReadLine();
+                    Menus.PageHandlerMenu();
+
+
+                }
+                else 
+                {
+                    Console.Clear();
+                    Console.WriteLine("Not a valid number Please Try Again");
+                    Console.ReadLine();
+                    Menus.RemoveMenu();
+                }
+
+            }
+            else if (!TestingInput)
+            {
+                Console.Clear();
+                Console.WriteLine("Wrong Input Please Try Again");
+                Console.ReadLine();
+                Menus.RemoveMenu();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine(" ERROR : Wrong input\n Returning to previous screen\n " +
+                    "press Enter");
+                Console.ReadLine();
+                Menus.PageHandlerMenu();
+            }
+            
+        }
         public static void PageHandlerMenu()
         {
             Console.Clear();
@@ -226,6 +299,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
                 else if (page == 2)
                 {
+                    Console.Clear();
                     // hier moet dus een soort van if statement staan geld voor elke statement
                     Menus.AddMenu(); // moet eerst checken of ik de permission hier heb 
                 }
@@ -235,7 +309,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.WriteLine("\n\n TESTING PAGE 3 EN DAN REFRESH PAGE \n\n");
                     Console.ReadLine();
                     Console.Clear();
-                    Menus.PageHandlerMenu();
+                    Menus.RemoveMenu();
 
                 }
                 else if (page == 4)

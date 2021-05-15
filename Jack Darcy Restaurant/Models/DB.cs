@@ -129,6 +129,7 @@ namespace Jack_Darcy_Restaurant.Models
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Menu>();
+            collection.DeleteMany(e => e.Id > -1);
             Menu[] menu =
             {
                 new Menu
@@ -157,8 +158,8 @@ namespace Jack_Darcy_Restaurant.Models
                     Name = "Menu name 5"
                 }
             };
-            
 
+            collection.InsertMany(menu);
 
            
         }
