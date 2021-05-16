@@ -478,23 +478,26 @@ namespace Jack_Darcy_Restaurant.Pages
 
                     var store = new DataStore("data.json");
                     var collection = store.GetCollection<MenuItem>();
+     
                     foreach (var x in collection.AsQueryable())
                     {
                         Console.WriteLine($"Id = {x.Id}\n" +
-                            $"Name = {x.Name}\n\n");
+                            $"Name = {x.Name}\n" +
+                            $"Price = {x.Price}\n\n");
                     }
                     Console.WriteLine("Please enter Id of Product you wanne delete");
                     string input1 = Console.ReadLine();
                     bool testingInput1 = int.TryParse(input1, out int intinput1);
-                    if (testingInput1)//devin idee maaak een method voor dit 
+                    if (testingInput1)
                     {
                         Console.Clear();
                         collection.DeleteMany(z => z.Id == intinput1);
-                        Console.WriteLine("showing new list of Product in Menu");
+                        Console.WriteLine("showing new list of Product");
                         foreach (var x in collection.AsQueryable())
                         {
                             Console.WriteLine($"Id = {x.Id}\n" +
-                                $"Name = {x.Name}\n\n");
+                                $"Name = {x.Name}\n" +
+                                $"Price = {x.Price}\n\n");
                         }
                         Console.ReadLine();
                         Menus.PageHandlerMenu();
@@ -591,6 +594,11 @@ namespace Jack_Darcy_Restaurant.Pages
                 {
                     Console.Clear();
                     Menus.AddProduct();
+                }
+                else if (page == 5)
+                {
+                    Console.Clear();
+                    Menus.RemoveProduct();
                 }
                 else
                 {
