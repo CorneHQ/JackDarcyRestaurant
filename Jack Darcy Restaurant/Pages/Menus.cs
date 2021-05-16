@@ -490,7 +490,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     {
                         Console.Clear();
                         collection.DeleteMany(z => z.Id == intinput1);
-                        Console.WriteLine("showing new list of Menu");
+                        Console.WriteLine("showing new list of Product in Menu");
                         foreach (var x in collection.AsQueryable())
                         {
                             Console.WriteLine($"Id = {x.Id}\n" +
