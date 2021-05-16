@@ -20,15 +20,21 @@ namespace Jack_Darcy_Restaurant.Pages
             }
 
             userTable.Write(Format.Minimal);
-            Console.WriteLine("Choose a user to manage:");
+            Console.WriteLine("Choose a user to manage, or press enter without typing anything to go to the main menu:");
             string answer = Console.ReadLine();
+            if (answer == "")
+            {
+                Utils.PageHandler.switchPage(-1);
+            }
             int idRole;
             Console.Clear();
             User chosenUser = Array.Find(users, el => el.Name == answer || (int.TryParse(answer, out idRole) && idRole == el.Id));
             if(chosenUser == null || chosenUser.Id == Manager.User.Id)
             {
-                Console.WriteLine("Could not find a user with that user ID ");
-                Program.ToMainMenu();
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine("Could not find a user with that user ID \n");
+                Console.ResetColor();
+                Admin.ManageUsers();
             }
 
             Console.WriteLine("Choose the desired operation: \n [0] Change user role \n [1] Delete user");
@@ -42,7 +48,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     roleTable.AddRow(item.Id, item.Name);
                 }
                 roleTable.Write(Format.Minimal);
-                Console.WriteLine("Choose a role for the user");
+                Console.WriteLine("Choose a role for the user:");
                 answer = Console.ReadLine();
                 Console.Clear();
                 if (int.TryParse(answer, out idRole))
@@ -56,38 +62,58 @@ namespace Jack_Darcy_Restaurant.Pages
 
                 if (DB.GetRole(chosenUser.Role_Id) == null)
                 {
-                    Console.WriteLine("Could not find role");
-                    Program.ToMainMenu();
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Could not find role \n");
+                    Console.ResetColor();
+                    Admin.ManageUsers();
                 }
 
                 if (DB.UpdateUser(chosenUser))
                 {
-                    Console.WriteLine("The role has been successfully edited");
-                    Program.ToMainMenu();
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("The role has been successfully edited \n");
+                    Console.ResetColor();
+                    Admin.ManageUsers();
                 }
                 else
                 {
-                    Console.WriteLine("Something went wrong");
-                    Program.ToMainMenu();
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Something went wrong \n");
+                    Console.ResetColor();
+                    Admin.ManageUsers();
                 }
             }
             else if (answer == "1")
             {
                 Console.Clear();
-                Console.WriteLine("Are you sure you want to delete this user? Type 'Yes' to confirm");
+                Console.WriteLine("Are you sure you want to delete this user? Type 'Yes' to confirm, or anything else to cancel");
                 answer = Console.ReadLine().ToLower();
                 if (answer == "yes")
                 {
                     DB.RemoveUser(chosenUser);
-                    Console.WriteLine("The user has been removed");
-                    Program.ToMainMenu();
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("The user has been removed \n");
+                    Console.ResetColor();
+                    Admin.ManageUsers();
                 }
                 else
                 {
-                    Console.WriteLine("The user has not been removed");
-                    Program.ToMainMenu();
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("The user has not been removed \n");
+                    Console.ResetColor();
+                    Admin.ManageUsers();
                 }
             }    
+            else
+            {
+                Console.Clear();
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine("The command could not be recognised \n");
+                Console.ResetColor();
+                Admin.ManageUsers();
+            }
         }
     }
 }

@@ -47,11 +47,9 @@ namespace Jack_Darcy_Restaurant.Utils
             }
             else
             {
-                Console.WriteLine("\n");
                 Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine("The requested page does not exist!");
+                Console.WriteLine("The requested page does not exist! \n");
                 Console.ResetColor();
-                Console.WriteLine("\n");
                 MainMenu.Show();
             } 
         }
