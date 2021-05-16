@@ -357,9 +357,25 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.WriteLine(" Please Enter Product Name");
                     string name = Console.ReadLine();
                     Console.WriteLine(" Please Enter Price (example = 10.10)");
-                    string inputPrice = Console.ReadLine(); 
-                    Console.WriteLine(" Please Enter if the dish is Vegan or not (example = y/n)");
-                    string inputVegan = Console.ReadLine(); 
+                    string inputPrice = Console.ReadLine();
+
+                    double Price;
+                    while (!double.TryParse(inputPrice, out Price))
+                    {
+                        Console.WriteLine("Wrong input Please see example (10.53)");
+                        inputPrice = Console.ReadLine();
+                    }
+
+                    Console.WriteLine(" Please Enter if the dish is Vegan or not (example = true/false)");
+                    string inputVegan = Console.ReadLine();
+
+                    bool Vegan;
+                    while (!bool.TryParse(inputVegan, out Vegan))
+                    {
+                        Console.WriteLine("Wrong input Please see example (true/false)");
+                        inputVegan = Console.ReadLine();
+                    }
+
                     Console.WriteLine(" Please Enter Category");
                     string Category = Console.ReadLine();
 
@@ -371,9 +387,16 @@ namespace Jack_Darcy_Restaurant.Pages
                         Console.WriteLine($"Id = {x.Id}\n" +
                             $"Name = {x.Name}\n");
                     }
-                    Console.ReadLine();
                     Console.WriteLine(" Please Enter Id of Menu");
                     string inputMenuID = Console.ReadLine();
+
+                    int MenuID;
+                    while (!int.TryParse(inputMenuID, out MenuID))
+                    {
+                        Console.WriteLine("\n\nWrong input Please see example (1/2/3/4/53)\n");
+                        Console.WriteLine(" Please Enter Id of Menu");
+                        inputMenuID = Console.ReadLine();
+                    }
 
                     //convertion for input
                     var store = new DataStore("data.json");
@@ -384,16 +407,21 @@ namespace Jack_Darcy_Restaurant.Pages
                         new MenuItem
                             {
                         Id = total,
-                        Menu_Id = 0,
+                        Menu_Id = MenuID,
                         Name = name,
                         Price = Price,
-                        Vegan = false, 
-                        Category = ""
+                        Vegan = Vegan, 
+                        Category = Category
                             }
                         };
                     Console.Clear();
                     Console.WriteLine(" You have Added Menu\n\n " +
-                        $"Id = {total} \n " +
+                        $"Id = {total},\n " +
+                        $"Menu_Id = {MenuID},\n " +
+                        $"Name = {name},\n " +
+                        $"Price = {Price},\n " +
+                        $"Vegan = {Vegan},\n " +
+                        $"Category = {Category} \n " +
                         $"Name = {name} \n ");
                     collection.InsertMany(menuitem);
                     Console.ReadLine();
@@ -480,10 +508,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 else if (page == 4)
                 {
                     Console.Clear();
-                    Console.WriteLine("\n\n TESTING PAGE 4 EN DAN REFRESH PAGE \n\n");
-                    Console.ReadLine();
-                    Console.Clear();
-                    Menus.PageHandlerMenu();
+                    Menus.AddProduct();
                 }
                 else
                 {
