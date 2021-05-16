@@ -37,7 +37,7 @@ namespace Jack_Darcy_Restaurant.Utils
             }
             else if (Manager.User != null && newPage == 6)
             {
-                Admin.ChangeUser();
+                Admin.ManageUsers();
             } else if(newPage == 7)
             {
                 Payment.Pay(50);
@@ -48,11 +48,9 @@ namespace Jack_Darcy_Restaurant.Utils
             }
             else
             {
-                Console.WriteLine("\n");
                 Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine("The requested page does not exist!");
+                Console.WriteLine("The requested page does not exist! \n");
                 Console.ResetColor();
-                Console.WriteLine("\n");
                 MainMenu.Show();
             } 
         }

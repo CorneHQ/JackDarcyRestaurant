@@ -39,6 +39,13 @@ namespace Jack_Darcy_Restaurant.Models
               
             return false;
         }
+        public static bool RemoveUser(User user)
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<User>();
+            collection.DeleteOne(a => a.Id == user.Id);
+            return true;
+        }
 
         public static Role GetRole(int ID)
         {
