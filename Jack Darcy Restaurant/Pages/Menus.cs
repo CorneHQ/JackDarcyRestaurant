@@ -387,7 +387,7 @@ namespace Jack_Darcy_Restaurant.Pages
                         Console.WriteLine($"Id = {x.Id}\n" +
                             $"Name = {x.Name}\n");
                     }
-                    Console.WriteLine(" Please Enter Id of Menu");
+                    Console.WriteLine(" Please Enter Id of Menu you want to append to");
                     string inputMenuID = Console.ReadLine();
 
                     int MenuID;
@@ -421,8 +421,8 @@ namespace Jack_Darcy_Restaurant.Pages
                         $"Name = {name},\n " +
                         $"Price = {Price},\n " +
                         $"Vegan = {Vegan},\n " +
-                        $"Category = {Category} \n " +
-                        $"Name = {name} \n ");
+                        $"Category = {Category} \n "
+                        );
                     collection.InsertMany(menuitem);
                     Console.ReadLine();
                     Menus.PageHandlerMenu();
@@ -458,7 +458,89 @@ namespace Jack_Darcy_Restaurant.Pages
         }
         public static void RemoveProduct()
         {
+            Console.Clear();
+            Console.WriteLine("Welcome to Remove Product Feature\n");
+            Console.WriteLine("" +
+                "[0] to go back \n" +
+                "[1] To Delete Product \n");
+            string input = Console.ReadLine();
+            bool TestingInput = int.TryParse(input, out int IntInput);
+            if (TestingInput)
+            {
+                if (IntInput == 0)
+                {
+                    Console.Clear();
+                    Menus.PageHandlerMenu();
+                }
+                else if (IntInput == 1)
+                {
+                    Console.Clear();
 
+                    var store = new DataStore("data.json");
+                    var collection = store.GetCollection<MenuItem>();
+                    foreach (var x in collection.AsQueryable())
+                    {
+                        Console.WriteLine($"Id = {x.Id}\n" +
+                            $"Name = {x.Name}\n\n");
+                    }
+                    Console.WriteLine("Please enter Id of Product you wanne delete");
+                    string input1 = Console.ReadLine();
+                    bool testingInput1 = int.TryParse(input1, out int intinput1);
+                    if (testingInput1)//devin idee maaak een method voor dit 
+                    {
+                        Console.Clear();
+                        collection.DeleteMany(z => z.Id == intinput1);
+                        Console.WriteLine("showing new list of Menu");
+                        foreach (var x in collection.AsQueryable())
+                        {
+                            Console.WriteLine($"Id = {x.Id}\n" +
+                                $"Name = {x.Name}\n\n");
+                        }
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
+                    }
+                    else if (!testingInput1)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Wrong Input Please Try Again");
+                        Console.ReadLine();
+                        Menus.RemoveMenu();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Wrong Input Please Try Again");
+                        Console.ReadLine();
+                        Menus.RemoveMenu();
+                    }
+
+
+
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Not a valid number Please Try Again");
+                    Console.ReadLine();
+                    Menus.RemoveMenu();
+                }
+
+            }
+            else if (!TestingInput)
+            {
+                Console.Clear();
+                Console.WriteLine("Wrong Input Please Try Again");
+                Console.ReadLine();
+                Menus.RemoveMenu();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine(" ERROR : Wrong input\n Returning to previous screen\n " +
+                    "press Enter");
+                Console.ReadLine();
+                Menus.PageHandlerMenu();
+            }
         }
 
         public static void TestingSmallerPagehandler()
