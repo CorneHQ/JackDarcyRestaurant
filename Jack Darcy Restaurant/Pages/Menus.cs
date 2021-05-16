@@ -357,29 +357,45 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.WriteLine(" Please Enter Product Name");
                     string name = Console.ReadLine();
                     Console.WriteLine(" Please Enter Price (example = 10.10)");
-                    string Price = Console.ReadLine(); 
+                    string inputPrice = Console.ReadLine(); 
                     Console.WriteLine(" Please Enter if the dish is Vegan or not (example = y/n)");
-                    string name = Console.ReadLine(); 
-                    Console.WriteLine(" Please Enter Menu Name");
-                    string name = Console.ReadLine(); 
-                    Console.WriteLine(" Please Enter Menu Name");
-                    string name = Console.ReadLine();
+                    string inputVegan = Console.ReadLine(); 
+                    Console.WriteLine(" Please Enter Category");
+                    string Category = Console.ReadLine();
+
+                    Console.Clear();
+                    DataStore storetemp = new DataStore("data.json");
+                    var collectiontemp = storetemp.GetCollection<Menu>();
+                    foreach (var x in collectiontemp.AsQueryable())
+                    {
+                        Console.WriteLine($"Id = {x.Id}\n" +
+                            $"Name = {x.Name}\n");
+                    }
+                    Console.ReadLine();
+                    Console.WriteLine(" Please Enter Id of Menu");
+                    string inputMenuID = Console.ReadLine();
+
+                    //convertion for input
                     var store = new DataStore("data.json");
-                    var collection = store.GetCollection<Menu>();
+                    var collection = store.GetCollection<MenuItem>();
                     int total = collection.Count;
-                    Menu[] menu =
+                    MenuItem[] menuitem =
                        {
-                        new Menu
+                        new MenuItem
                             {
                         Id = total,
-                        Name = name
+                        Menu_Id = 0,
+                        Name = name,
+                        Price = Price,
+                        Vegan = false, 
+                        Category = ""
                             }
                         };
                     Console.Clear();
                     Console.WriteLine(" You have Added Menu\n\n " +
                         $"Id = {total} \n " +
                         $"Name = {name} \n ");
-                    collection.InsertMany(menu);
+                    collection.InsertMany(menuitem);
                     Console.ReadLine();
                     Menus.PageHandlerMenu();
 
