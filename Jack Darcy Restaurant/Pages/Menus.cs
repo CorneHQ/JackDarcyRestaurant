@@ -176,7 +176,7 @@ namespace Jack_Darcy_Restaurant.Pages
         static void AddMenu() // note voor devin json de data is opgeslagen in een array in een object 
         {
             Console.Clear();
-            Console.WriteLine("Welcome to Remove Menu Feature\n");
+            Console.WriteLine("Welcome to Add Menu Feature\n");
             Console.WriteLine("" +
                 "[0] to go back \n" +
                 "[1] To Add Menu \n");
@@ -483,7 +483,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     {
                         Console.WriteLine($"Id = {x.Id}\n" +
                             $"Name = {x.Name}\n" +
-                            $"Price = {x.Price}\n\n");
+                            $"Price = {String.Format("{0:N2} Euro", x.Price)}\n\n");
                     }
                     Console.WriteLine("Please enter Id of Product you wanne delete");
                     string input1 = Console.ReadLine();
@@ -553,7 +553,7 @@ namespace Jack_Darcy_Restaurant.Pages
         public static void PageHandlerMenu()
         {
             Console.Clear();
-            string s = $"choose your feature \n";
+            string s = $"Choose your feature \n";
             s += $"[0] Go back \n";
             s += $"[1] Showing the menu \n";
             s += $"[2] Add menu \n";
