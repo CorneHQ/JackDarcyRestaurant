@@ -11,6 +11,8 @@ namespace Jack_Darcy_Restaurant
         {
             DB.RoleInit();
             DB.UserInit();
+            DB.MenuInit();
+            DB.MenuItemInit();
             PageHandler.switchPage(-1);
         }
 
