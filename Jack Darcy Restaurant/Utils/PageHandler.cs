@@ -41,7 +41,15 @@ namespace Jack_Darcy_Restaurant.Utils
                 Admin.ManageUsers();
             } else if(newPage == 7)
             {
-                Payment.Pay(50);
+                Payment.Pay(0.00);
+            }
+            else if (Manager.User != null && newPage == 8)
+            {
+                Menus.ShowMenus();
+            }
+            else if (Manager.User != null && newPage == 9)
+            {
+                ViewCart.CurrentCart();
             }
             else if (newPage == -1)
             {

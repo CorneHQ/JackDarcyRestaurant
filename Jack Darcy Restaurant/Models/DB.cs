@@ -70,7 +70,36 @@ namespace Jack_Darcy_Restaurant.Models
             Role[] r = collection.AsQueryable().ToArray();
             return r;
         }
+        public static bool UpdateCart(Cart AddToCart)
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Cart>();
+            collection.InsertOne(AddToCart);
+            return true;
+        }
+        public static Cart GetPrice(string Name)
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Cart>();
+            Cart price = collection.AsQueryable().FirstOrDefault(e => e.Name == Name);
+            return price;
+        }
+        public static Cart[] LoadCart()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Cart>();
 
+            Cart[] carts = collection.AsQueryable().ToArray<Cart>();
+            return carts;
+        }
+        public static MenuItem[] LoadMenuItems()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<MenuItem>();
+
+            MenuItem[] items = collection.AsQueryable().ToArray<MenuItem>();
+            return items;
+        }
 
         public static void RoleInit()
         {

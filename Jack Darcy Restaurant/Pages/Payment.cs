@@ -6,7 +6,7 @@ namespace Jack_Darcy_Restaurant.Pages
 {
     class Payment
     {
-        public static void Pay(int amount)
+        public static void Pay(double amount)
         {
             Console.Clear();
             Console.WriteLine($"Your amount is ${amount}");

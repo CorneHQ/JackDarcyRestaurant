@@ -124,7 +124,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 {
                     PageHandler.switchPage(3);
                     break;
-                } else if(Console.ReadKey().Key == ConsoleKey.Backspace)
+                } else if (Console.ReadKey().Key == ConsoleKey.Backspace)
                 {
                     Console.WriteLine("\nChoose your filter here:");
                     Console.WriteLine($"[0] {(filterVegan == "all" ? "Enable" : "Disable")} Vegan ({(filterVegan == "all" ? "All" : "Only Vegan")})");
@@ -167,9 +167,21 @@ namespace Jack_Darcy_Restaurant.Pages
                         }
                     } else
                     {
-                        showError = "Filter option doesn\'t exist!";
+                        showError = "Filter option doesn't exist!";
                         ShowMenu(menuId);
                     }
+                }
+                string itemName = Console.ReadLine();
+                double itemPrice = 2.0;
+
+                Cart AddToCart = new Cart(Manager.User.Id, itemName, itemPrice);
+                if (DB.UpdateCart(AddToCart))
+                {
+                    Console.WriteLine("success");
+                }
+                else
+                {
+                    Console.WriteLine("failed");
                 }
             }
         }
