@@ -47,6 +47,14 @@ namespace Jack_Darcy_Restaurant.Models
             return true;
         }
 
+        public static bool RemoveCart()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Cart>();
+            collection.DeleteOne(a => a.UserID == Manager.User.Id);
+            return true;
+        }
+
         public static Role GetRole(int ID)
         {
             var store = new DataStore("data.json");
@@ -70,11 +78,21 @@ namespace Jack_Darcy_Restaurant.Models
             Role[] r = collection.AsQueryable().ToArray();
             return r;
         }
-        public static bool UpdateCart(Cart AddToCart)
+        public static bool UpdateCart(MenuItem menuItem)
         {
+            DB.CartInit();
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Cart>();
-            collection.InsertOne(AddToCart);
+            Cart c = collection.AsQueryable().FirstOrDefault(e => e.UserID == Manager.User.Id);
+            if (c == null) return false;
+
+            c.dishes.Add(menuItem);
+            c.Price = 0.00;
+            foreach (MenuItem item in c.dishes)
+            {
+                c.Price += item.Price;
+            }
+            collection.ReplaceOne(c.Id, c);
             return true;
         }
         public static Cart GetPrice(string Name)
@@ -193,6 +211,17 @@ namespace Jack_Darcy_Restaurant.Models
                 SetUser(user);
             }
         }
+
+        public static void CartInit()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<Cart>();
+            if(collection.AsQueryable().FirstOrDefault(e => e.UserID == Manager.User.Id) == null)
+            {
+                collection.InsertOne(new Cart(Manager.User.Id, "cart", 0.00));
+            }
+        }
+
         public static void MenuInit()
         {
             var store = new DataStore("data.json");

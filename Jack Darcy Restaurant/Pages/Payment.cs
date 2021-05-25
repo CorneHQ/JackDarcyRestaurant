@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jack_Darcy_Restaurant.Models;
+using System;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
@@ -72,6 +73,7 @@ namespace Jack_Darcy_Restaurant.Pages
 
             if (cardExpiry > DateTime.Now && cardExpiry < DateTime.Now.AddYears(6))
             {
+                DB.RemoveCart();
                 Console.WriteLine("processing");
                 System.Threading.Thread.Sleep(2000);
                 Console.WriteLine("payment succesfull");
