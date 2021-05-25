@@ -172,14 +172,14 @@ namespace Jack_Darcy_Restaurant.Pages
                         showError = "Filter option doesn't exist!";
                         ShowMenu(menuId);
                     }
-                } else if (key == ConsoleKey.S)
+                } else if (key == ConsoleKey.Tab)
                 {
-                    Console.WriteLine("what dish");
+                    Console.WriteLine("Please enter the ID of the product");
                     string Output = Console.ReadLine();
                     int dishChoose;
                     if (!Int32.TryParse(Output, out dishChoose))
                     {
-                        Console.WriteLine("failed");
+                        Console.WriteLine("Failed");
                         Program.ToMainMenu();
                         break;
                     }
@@ -187,10 +187,10 @@ namespace Jack_Darcy_Restaurant.Pages
                     if(m != null)
                     {
                         DB.UpdateCart(m);
-                        Console.WriteLine("succes");
+                        Console.WriteLine("Sucess");
                     } else
                     {
-                        Console.WriteLine("failed");
+                        Console.WriteLine("Failed");
                     }
                     Program.ToMainMenu();
                     break;
