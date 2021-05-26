@@ -1,4 +1,5 @@
-﻿using Jack_Darcy_Restaurant.Models;
+﻿using ConsoleTables;
+using Jack_Darcy_Restaurant.Models;
 using Jack_Darcy_Restaurant.Utils;
 using JsonFlatFileDataStore;
 using System;
@@ -65,13 +66,38 @@ namespace Jack_Darcy_Restaurant.Pages
                 addError("The given end time is outside the opening times of the restaurant");
             }
 
+            DataStore store = new DataStore("data.json");
+
+            int userID;
+
+            if (Manager.Role.Add_Reservation_Customer)
+            {
+                var usersCollection = store.GetCollection<User>().AsQueryable();
+                Console.WriteLine("\n");
+                ConsoleTable usersTable = new ConsoleTable("User ID", "Name", "Email");
+                foreach(User user in usersCollection)
+                {
+                    usersTable.AddRow(user.Id, user.Name, user.Email);
+                }
+                usersTable.Write(Format.Alternative);
+                Console.WriteLine("Please choose the user by his user ID");
+                string userIDStr = Console.ReadLine();
+                if(!Int32.TryParse(userIDStr, out userID))
+                {
+                    addError("The given user ID is not a valid number");
+                }
+            } else
+            {
+                userID = Manager.User.Id;
+            }
+
+
             if (errors != null && errors.Count > 0)
                 showForm();
 
-            DataStore store = new DataStore("data.json");
             var collection = store.GetCollection<Models.Reservation>();
             string code = Str.randomRegistrationKey();
-            Models.Reservation newReservation = new Models.Reservation { Id = 0, User_Id = Manager.User.Id, Reservation_Date = date, Amount_People = amountOfPeople, From = startTime, Till = endTime, Code = code };
+            Models.Reservation newReservation = new Models.Reservation { Id = 0, User_Id = userID, Reservation_Date = date, Amount_People = amountOfPeople, From = startTime, Till = endTime, Code = code };
             collection.InsertOne(newReservation);
 
             Console.Clear();
