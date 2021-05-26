@@ -72,8 +72,7 @@ namespace Jack_Darcy_Restaurant.Pages
 
         private static void addReservation()
         {
-            Console.Clear();
-            Console.WriteLine("Add reservation comes here");
+            AddReservation.showForm();
         }
 
         private static void seeReservations()
