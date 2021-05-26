@@ -4,6 +4,7 @@ using Jack_Darcy_Restaurant.Utils;
 using JsonFlatFileDataStore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Jack_Darcy_Restaurant.Pages
@@ -66,7 +67,27 @@ namespace Jack_Darcy_Restaurant.Pages
                 addError("The given end time is outside the opening times of the restaurant");
             }
 
+
             DataStore store = new DataStore("data.json");
+
+            var reservationsCollection = store.GetCollection<Models.Reservation>()
+                .AsQueryable()
+                .Where(reservation => reservation.Reservation_Date == date && reservation.From == startTime && reservation.Till == endTime);
+
+            int countPeople = 0;
+            foreach(Models.Reservation reservation in reservationsCollection)
+            {
+                countPeople += reservation.Amount_People;
+            }
+
+            if (amountOfPeople > 36)
+            {
+                addError("The restaurant has a limit of 36 seats, please come with a smaller group");
+            }
+            else if (countPeople + amountOfPeople > 36)
+            {
+                addError("The restaurant has a limit of 36 seats, please try again later");
+            } 
 
             int userID;
 
