@@ -108,7 +108,7 @@ namespace Jack_Darcy_Restaurant.Models
                     Add_Menu = false,
                     Edit_Menu = false,
                     Assign_Roles = true,
-                    Add_Reservation_Customer = false,// dont know what this does
+                    Add_Reservation_Customer = true,// dont know what this does
                     Edit_Roles = true,
                     See_Transactions = true,
                     See_Takeaway_Orders = false,
@@ -142,7 +142,7 @@ namespace Jack_Darcy_Restaurant.Models
                     Add_Menu = false,
                     Edit_Menu = false,
                     Assign_Roles = false,
-                    Add_Reservation_Customer = false,// dont know what this does
+                    Add_Reservation_Customer = true,// dont know what this does
                     Edit_Roles = false,
                     See_Transactions = true,
                     See_Takeaway_Orders = true,
