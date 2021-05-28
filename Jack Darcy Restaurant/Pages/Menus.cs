@@ -101,30 +101,32 @@ namespace Jack_Darcy_Restaurant.Pages
             }
 
             IEnumerable<MenuItem> menuItems = GetMenuItems(menuId);
-            ConsoleTable menuTable = new ConsoleTable("Name", "Price", "Vegan", "Category");
+            ConsoleTable menuTable = new ConsoleTable("Id", "Name", "Price", "Vegan", "Category");
             if (!menuItems.Any())
             {
-                menuTable.AddRow("There are no items added to this menu.", "", "", "");
+                menuTable.AddRow("There are no items added to this menu.", "", "", "", "");
             } else
             {
                 foreach (MenuItem menuItem in menuItems)
                 {
-                    menuTable.AddRow(menuItem.Name, String.Format("{0:N2} Euro", menuItem.Price), menuItem.Vegan ? "Yes" : "No", menuItem.Category);
+                    menuTable.AddRow(menuItem.Id, menuItem.Name, String.Format("{0:N2} Euro", menuItem.Price), menuItem.Vegan ? "Yes" : "No", menuItem.Category);
                 }
             }
             menuTable.Write(Format.Alternative);
             Console.WriteLine("Please press 'Backspace' to customize the filters or press 'Enter' to go back to the main menu or press 'Esc' to go back to the menu list");
+            Console.WriteLine("Please press 'Tab' to add a dish to your shopping cart");
             while (true)
             {
-                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                ConsoleKey key = Console.ReadKey().Key;
+                if (key == ConsoleKey.Enter)
                 {
                     PageHandler.switchPage(-1);
                     break;
-                } else if (Console.ReadKey().Key == ConsoleKey.Escape)
+                } else if (key == ConsoleKey.Escape)
                 {
                     PageHandler.switchPage(3);
                     break;
-                } else if(Console.ReadKey().Key == ConsoleKey.Backspace)
+                } else if (key == ConsoleKey.Backspace)
                 {
                     Console.WriteLine("\nChoose your filter here:");
                     Console.WriteLine($"[0] {(filterVegan == "all" ? "Enable" : "Disable")} Vegan ({(filterVegan == "all" ? "All" : "Only Vegan")})");
@@ -167,10 +169,53 @@ namespace Jack_Darcy_Restaurant.Pages
                         }
                     } else
                     {
-                        showError = "Filter option doesn\'t exist!";
+                        showError = "Filter option doesn't exist!";
                         ShowMenu(menuId);
                     }
+                } else if (key == ConsoleKey.Tab)
+                {
+                    Console.WriteLine("Please enter the ID of the product");
+                    string Output = Console.ReadLine();
+                    int dishChoose;
+                    if (!Int32.TryParse(Output, out dishChoose))
+                    {
+                        Console.WriteLine("Failed");
+                        Program.ToMainMenu();
+                        break;
+                    }
+                    MenuItem m =  menuItems.AsQueryable().FirstOrDefault(m => m.Id == dishChoose || m.Name == Output);
+                    Console.WriteLine("Please enter the quantity: ");
+                    string q = Console.ReadLine();
+                    if (!Int32.TryParse(q, out int Quantity))
+                    {
+                        Console.WriteLine("Invalid quantity");
+                        Program.ToMainMenu();
+                        break;
+                    }
+                    m.Quantity = Quantity;
+                    if (m != null)
+                    {
+                        DB.UpdateCart(m);
+                        Console.WriteLine("Success");
+                    } else
+                    {
+                        Console.WriteLine("Failed");
+                    }
+                    Program.ToMainMenu();
+                    break;
                 }
+                //string itemName = Console.ReadLine();
+                //double itemPrice = 2.0;
+
+                //Cart AddToCart = new Cart(Manager.User.Id, itemName, itemPrice);
+                //if (DB.UpdateCart(AddToCart))
+                //{
+                //    Console.WriteLine("success");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("failed");
+                //}
             }
         }
 

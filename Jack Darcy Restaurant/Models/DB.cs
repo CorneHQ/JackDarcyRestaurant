@@ -47,6 +47,15 @@ namespace Jack_Darcy_Restaurant.Models
             return true;
         }
 
+        public static bool RemoveCart()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<User>();
+            User c = collection.AsQueryable().FirstOrDefault(e => e.Id == Manager.User.Id);
+            c.Cart.Clear();
+            return true;
+        }
+
         public static Role GetRole(int ID)
         {
             var store = new DataStore("data.json");
@@ -70,7 +79,33 @@ namespace Jack_Darcy_Restaurant.Models
             Role[] r = collection.AsQueryable().ToArray();
             return r;
         }
+        public static bool UpdateCart(MenuItem menuItem)
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<User>();
+            User c = collection.AsQueryable().FirstOrDefault(e => e.Id == Manager.User.Id);
+            if (c == null) return false;
 
+            c.Cart.Add(menuItem);
+            collection.ReplaceOne(c.Id, c);
+            return true;
+        }
+        public static User[] LoadCart()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<User>();
+
+            User[] carts = collection.AsQueryable().ToArray<User>();
+            return carts;
+        }
+        public static MenuItem[] LoadMenuItems()
+        {
+            var store = new DataStore("data.json");
+            var collection = store.GetCollection<MenuItem>();
+
+            MenuItem[] items = collection.AsQueryable().ToArray<MenuItem>();
+            return items;
+        }
 
         public static void RoleInit()
         {
@@ -164,6 +199,7 @@ namespace Jack_Darcy_Restaurant.Models
                 SetUser(user);
             }
         }
+
         public static void MenuInit()
         {
             var store = new DataStore("data.json");

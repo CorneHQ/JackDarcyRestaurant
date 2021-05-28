@@ -12,5 +12,6 @@ namespace Jack_Darcy_Restaurant.Models
         public double Price { get; set; }
         public bool Vegan { get; set; }
         public string Category { get; set; }
+        public int Quantity { get; set; }
     }
 }

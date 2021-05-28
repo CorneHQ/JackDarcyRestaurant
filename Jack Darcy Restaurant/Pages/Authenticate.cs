@@ -30,10 +30,12 @@ namespace Jack_Darcy_Restaurant.Pages
                 {
                     if (password.Length == 0) continue;
                     password = password.Remove(password.Length - 1);
+                    Console.Write("\b \b");
                 }
                 else
                 {
                     password += temp.ToString().ToLower();
+                    Console.Write("*");
                 }
             }
 
@@ -99,9 +101,11 @@ namespace Jack_Darcy_Restaurant.Pages
                 } else if (temp == ConsoleKey.Backspace) {
                     if (password.Length == 0) continue;
                     password = password.Remove(password.Length - 1);
+                    Console.Write("\b \b");
                 } else
                 {
                     password += temp.ToString().ToLower();
+                    Console.Write("*");
                 }
             }
             Console.Clear();
