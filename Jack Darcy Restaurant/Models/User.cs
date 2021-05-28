@@ -11,6 +11,7 @@ namespace Jack_Darcy_Restaurant.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public List<MenuItem> Cart { get; set; }
 
         public User(int cId, string cName, string cPassword, string cEmail, int cRoles)
         {
@@ -19,6 +20,7 @@ namespace Jack_Darcy_Restaurant.Models
             Password = cPassword;
             Email = cEmail;
             Role_Id = cRoles;
+            Cart = new List<MenuItem>();
         }
 
         public bool Validate(string vName, string vPassword)

@@ -11,24 +11,28 @@ namespace Jack_Darcy_Restaurant.Pages
     {
         public static void CurrentCart()
         {
-            Cart cart = DB.LoadCart().SingleOrDefault(e => e.UserID == Manager.User.Id);
-            ConsoleTable products = new ConsoleTable("Name", "Price");
-            if(cart == null)
+            User user = DB.LoadUser().SingleOrDefault(e => e.Id == Manager.User.Id);
+            ConsoleTable products = new ConsoleTable("Name", "Price", "Quantity");
+            double Total = 0.0;
+            int TotalItems = 0;
+            if(user.Cart.Count == 0)
             {
-                Console.WriteLine("no Product in cart");
+                Console.WriteLine("Your cart is empty");
                 Program.ToMainMenu();
             }
-            foreach (MenuItem item in cart.dishes)
+            foreach (MenuItem item in user.Cart)
             {
-                products.AddRow(item.Name, item.Price);
+                products.AddRow(item.Name, item.Price, item.Quantity);
+                Total += item.Price * item.Quantity;
+                TotalItems += item.Quantity;
             }
-            products.AddRow("\nTotal: ", cart.Price);
+            products.AddRow("\nTotal: ", Total, TotalItems);
             products.Write(Format.Minimal);
             Console.WriteLine("To checkout write 'Pay', to go to the main menu write anything else:");
             string a = Console.ReadLine();
             if (a.ToLower() == "pay")
             {
-                Payment.Pay(cart.Price);
+                Payment.Pay(Total);
             }
             else
             {

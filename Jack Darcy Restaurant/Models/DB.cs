@@ -50,8 +50,9 @@ namespace Jack_Darcy_Restaurant.Models
         public static bool RemoveCart()
         {
             var store = new DataStore("data.json");
-            var collection = store.GetCollection<Cart>();
-            collection.DeleteOne(a => a.UserID == Manager.User.Id);
+            var collection = store.GetCollection<User>();
+            User c = collection.AsQueryable().FirstOrDefault(e => e.Id == Manager.User.Id);
+            c.Cart.Clear();
             return true;
         }
 
@@ -80,34 +81,21 @@ namespace Jack_Darcy_Restaurant.Models
         }
         public static bool UpdateCart(MenuItem menuItem)
         {
-            DB.CartInit();
             var store = new DataStore("data.json");
-            var collection = store.GetCollection<Cart>();
-            Cart c = collection.AsQueryable().FirstOrDefault(e => e.UserID == Manager.User.Id);
+            var collection = store.GetCollection<User>();
+            User c = collection.AsQueryable().FirstOrDefault(e => e.Id == Manager.User.Id);
             if (c == null) return false;
 
-            c.dishes.Add(menuItem);
-            c.Price = 0.00;
-            foreach (MenuItem item in c.dishes)
-            {
-                c.Price += item.Price;
-            }
+            c.Cart.Add(menuItem);
             collection.ReplaceOne(c.Id, c);
             return true;
         }
-        public static Cart GetPrice(string Name)
+        public static User[] LoadCart()
         {
             var store = new DataStore("data.json");
-            var collection = store.GetCollection<Cart>();
-            Cart price = collection.AsQueryable().FirstOrDefault(e => e.Name == Name);
-            return price;
-        }
-        public static Cart[] LoadCart()
-        {
-            var store = new DataStore("data.json");
-            var collection = store.GetCollection<Cart>();
+            var collection = store.GetCollection<User>();
 
-            Cart[] carts = collection.AsQueryable().ToArray<Cart>();
+            User[] carts = collection.AsQueryable().ToArray<User>();
             return carts;
         }
         public static MenuItem[] LoadMenuItems()
@@ -209,16 +197,6 @@ namespace Jack_Darcy_Restaurant.Models
             {
                 User user = new User(0, "owner", "secret", "owner@jackdarcy.com", 1);
                 SetUser(user);
-            }
-        }
-
-        public static void CartInit()
-        {
-            var store = new DataStore("data.json");
-            var collection = store.GetCollection<Cart>();
-            if(collection.AsQueryable().FirstOrDefault(e => e.UserID == Manager.User.Id) == null)
-            {
-                collection.InsertOne(new Cart(Manager.User.Id, "cart", 0.00));
             }
         }
 

@@ -184,7 +184,16 @@ namespace Jack_Darcy_Restaurant.Pages
                         break;
                     }
                     MenuItem m =  menuItems.AsQueryable().FirstOrDefault(m => m.Id == dishChoose || m.Name == Output);
-                    if(m != null)
+                    Console.WriteLine("Please enter the quantity: ");
+                    string q = Console.ReadLine();
+                    if (!Int32.TryParse(q, out int Quantity))
+                    {
+                        Console.WriteLine("Invalid quantity");
+                        Program.ToMainMenu();
+                        break;
+                    }
+                    m.Quantity = Quantity;
+                    if (m != null)
                     {
                         DB.UpdateCart(m);
                         Console.WriteLine("Sucess");
