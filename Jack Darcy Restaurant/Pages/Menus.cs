@@ -196,7 +196,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     if (m != null)
                     {
                         DB.UpdateCart(m);
-                        Console.WriteLine("Sucess");
+                        Console.WriteLine("Success");
                     } else
                     {
                         Console.WriteLine("Failed");

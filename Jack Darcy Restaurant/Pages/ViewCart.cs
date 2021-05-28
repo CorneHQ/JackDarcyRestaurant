@@ -22,12 +22,12 @@ namespace Jack_Darcy_Restaurant.Pages
             }
             foreach (MenuItem item in user.Cart)
             {
-                products.AddRow(item.Name, item.Price, item.Quantity);
+                products.AddRow(item.Name, String.Format("{0:N2} Euro", item.Price), item.Quantity);
                 Total += item.Price * item.Quantity;
                 TotalItems += item.Quantity;
             }
-            products.AddRow("\nTotal: ", Total, TotalItems);
-            products.Write(Format.Minimal);
+            products.AddRow("Total:", String.Format("{0:N2} Euro", Total), TotalItems);
+            products.Write(Format.Alternative);
             Console.WriteLine("To checkout write 'Pay', to go to the main menu write anything else:");
             string a = Console.ReadLine();
             if (a.ToLower() == "pay")
