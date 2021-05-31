@@ -35,7 +35,12 @@ namespace Jack_Darcy_Restaurant.Pages
             string cvv = Console.ReadLine();
 
             Console.Clear();
-            BigInteger number = BigInteger.Parse(cardId);
+            BigInteger number;
+            if(!BigInteger.TryParse(cardId, out number))
+            {
+                Console.WriteLine("credit card is not a number");
+                Program.ToMainMenu();
+            }
             int sum = 0;
             int temp;
             bool b = true;
