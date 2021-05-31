@@ -10,11 +10,21 @@ namespace Jack_Darcy_Restaurant.Pages
         public static void Pay(double amount)
         {
             Console.Clear();
+            if (amount == 0)
+            {
+                Console.WriteLine("price is 0");
+                Program.ToMainMenu();
+            }
             Console.WriteLine($"Your amount is ${amount}");
             
             Console.Clear();
             Console.WriteLine("Please enter your card number");
             string cardId = Console.ReadLine();
+            if(cardId.Length < 16)
+            {
+                Console.WriteLine("credit card does is not long enough");
+                Program.ToMainMenu();
+            }
             
             Console.Clear();
             Console.WriteLine("please enter your expiration date (MM/YYYY)");
