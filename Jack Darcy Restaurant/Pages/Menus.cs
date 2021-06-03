@@ -441,7 +441,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     string inputPrice = Console.ReadLine();
 
                     double Price;
-                    while (!double.TryParse(inputPrice, out Price))// check for price
+                    while (!double.TryParse(inputPrice.Replace(',','.'), out Price))// check for price
                     {
                         Console.WriteLine("Wrong input Please see example (15.53)");
                         inputPrice = Console.ReadLine();
