@@ -152,7 +152,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
             } else
             {
-                Console.WriteLine("Not a unique email");
+                Console.WriteLine("Not a valid email");
             }
 
             Program.ToMainMenu();
