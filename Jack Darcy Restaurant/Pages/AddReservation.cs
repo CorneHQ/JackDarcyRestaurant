@@ -61,7 +61,7 @@ namespace Jack_Darcy_Restaurant.Pages
             // Checks if there is still room available with the given date
             TimeSpan startTime = new TimeSpan(12, 0, 0);
             TimeSpan endTime = new TimeSpan(14, 0, 0);
-            int availiableSpots = 0;
+            int availableSpots = 0;
             while(!startTime.Equals(new TimeSpan(24, 0, 0)))
             {
                 int amountOfSeatsFilled = 0;
@@ -75,20 +75,20 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
 
                 if (36 - amountOfSeatsFilled - amountOfPeople >= 0)
-                    availiableSpots++;
+                    availableSpots++;
 
                 startTime += TimeSpan.FromHours(2);
                 endTime += TimeSpan.FromHours(2);
             }
 
-            if (availiableSpots == 0)
+            if (availableSpots == 0)
             {
                 addError("There is no place for you on this date, please choose a other date");
                 showForm();
             }
 
             // In this tuple array all the available timeslots will be saved for later
-            Tuple<TimeSpan, TimeSpan>[] availiableTimes = new Tuple<TimeSpan, TimeSpan>[availiableSpots];
+            Tuple<TimeSpan, TimeSpan>[] availableTimes = new Tuple<TimeSpan, TimeSpan>[availableSpots];
 
             startTime = new TimeSpan(12, 0, 0);
             endTime = new TimeSpan(14, 0, 0);
@@ -106,16 +106,16 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
 
                 if (36 - amountOfSeatsFilled - amountOfPeople >= 0)
-                    availiableTimes[i++] = Tuple.Create(startTime, endTime);
+                    availableTimes[i++] = Tuple.Create(startTime, endTime);
 
                 startTime += TimeSpan.FromHours(2);
                 endTime += TimeSpan.FromHours(2);
             }
 
             string output = "\n";
-            for(int j = 0; j < availiableTimes.Length; j++)
+            for(int j = 0; j < availableTimes.Length; j++)
             {
-                output += $"[{j}] {availiableTimes[j].Item1.ToString(@"hh\:mm")} - {availiableTimes[j].Item2.ToString(@"hh\:mm")}\n";
+                output += $"[{j}] {availableTimes[j].Item1.ToString(@"hh\:mm")} - {availableTimes[j].Item2.ToString(@"hh\:mm")}\n";
             }
             Console.WriteLine(output);
 
@@ -130,7 +130,7 @@ namespace Jack_Darcy_Restaurant.Pages
             }
 
             // Checks if the given number is in the range of the tuple array
-            if (chosenTime > availiableTimes.Length - 1)
+            if (chosenTime > availableTimes.Length - 1)
             {
                 addError("Please enter a number that's on the screen when choosing the time");
                 showForm();
@@ -168,7 +168,7 @@ namespace Jack_Darcy_Restaurant.Pages
             var collection = store.GetCollection<Models.Reservation>();
             // Generates eight characters long unique reservation code
             string code = Str.randomRegistrationKey();
-            Models.Reservation newReservation = new Models.Reservation { Id = 0, User_Id = userID, Reservation_Date = date, Amount_People = amountOfPeople, From = availiableTimes[chosenTime].Item1, Till = availiableTimes[chosenTime].Item2, Code = code };
+            Models.Reservation newReservation = new Models.Reservation { Id = 0, User_Id = userID, Reservation_Date = date, Amount_People = amountOfPeople, From = availableTimes[chosenTime].Item1, Till = availableTimes[chosenTime].Item2, Code = code };
             collection.InsertOne(newReservation);
 
             Console.Clear();
