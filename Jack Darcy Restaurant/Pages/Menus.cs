@@ -241,7 +241,14 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.WriteLine(" Welcome in the addMenu Fearture");
                     Console.WriteLine(" Please Enter Menu Name");
                     string name = Console.ReadLine();
-
+                    while (name == "")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("" +
+                            "\n\n       Name cannot be empty\n\n");
+                        Console.WriteLine(" Please Enter Menu Name");
+                        name = Console.ReadLine();
+                    }
                     var store = new DataStore("data.json");
                     var collection = store.GetCollection<Menu>();
                     int total = collection.Count;
@@ -313,7 +320,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 {
                     Console.Clear();
 
-                    var store = new DataStore("data.json");
+                    var store = new DataStore("data.json");// getting all the info of the data we have 
                     var collection = store.GetCollection<Menu>();
                     foreach (var x in collection.AsQueryable())
                     {
@@ -323,10 +330,29 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.WriteLine("Please enter Id of Menu you wanne delete");
                     string input1 = Console.ReadLine();
                     bool testingInput1 = int.TryParse(input1, out int intinput1);
-                    if (testingInput1)//devin idee maaak een method voor dit 
+                    if (testingInput1)
                     {
+                        // get all the ID in a array
+                        int[] allID = new int[collection.Count];
+                        int ii = 0;
+                        foreach (var z in collection.AsQueryable())
+                        {
+                            allID[ii] = z.Id;
+                            ii++;
+                        }
+                        
+                        while (!allID.Contains(intinput1))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("" +
+                                "\n\n       ID does not exist\n\n");
+                            Console.WriteLine("Please Enter ID");
+                            input1 = Console.ReadLine();
+                            testingInput1 = int.TryParse(input1, out intinput1);
+                        }
                         Console.Clear();
                         collection.DeleteMany(z => z.Id == intinput1);
+
                         Console.WriteLine("showing new list of Menu");
                         foreach (var x in collection.AsQueryable())
                         {
@@ -402,13 +428,22 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.WriteLine(" Welcome in the add Product Fearture");
                     Console.WriteLine(" Please Enter Product Name");
                     string name = Console.ReadLine();
+                    while (name == "")// check for name 
+                    {
+                        Console.Clear();
+                        Console.WriteLine("" +
+                            "\n\n       Name cannot be empty\n\n");
+                        Console.WriteLine(" Please Enter Product Name");
+                        name = Console.ReadLine();
+                    }
+
                     Console.WriteLine(" Please Enter Price (example = 10.10)");
                     string inputPrice = Console.ReadLine();
 
                     double Price;
-                    while (!double.TryParse(inputPrice, out Price))
+                    while (!double.TryParse(inputPrice, out Price))// check for price
                     {
-                        Console.WriteLine("Wrong input Please see example (10.53)");
+                        Console.WriteLine("Wrong input Please see example (15.53)");
                         inputPrice = Console.ReadLine();
                     }
 
@@ -416,34 +451,75 @@ namespace Jack_Darcy_Restaurant.Pages
                     string inputVegan = Console.ReadLine();
 
                     bool Vegan;
-                    while (!bool.TryParse(inputVegan, out Vegan))
+                    while (!bool.TryParse(inputVegan, out Vegan))// check for vegan
                     {
                         Console.WriteLine("Wrong input Please see example (true/false)");
                         inputVegan = Console.ReadLine();
                     }
 
-                    Console.WriteLine(" Please Enter Category");
+                    Console.WriteLine(" Please Enter Category");//check for category 
                     string Category = Console.ReadLine();
+                    while (Category == "")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("" +
+                            "\n\n       Name cannot be empty\n\n");
+                        Console.WriteLine(" Please Enter Category Name");
+                        Category = Console.ReadLine();
+                    }
 
+
+                    // Adding to menu part
                     Console.Clear();
-                    DataStore storetemp = new DataStore("data.json");
+                    DataStore storetemp = new DataStore("data.json");// het kiezen welke menu het er bij hoort
                     var collectiontemp = storetemp.GetCollection<Menu>();
-                    foreach (var x in collectiontemp.AsQueryable())
+                    foreach (var x in collectiontemp.AsQueryable())//showing all menu choices
                     {
                         Console.WriteLine($"Id = {x.Id}\n" +
                             $"Name = {x.Name}\n");
                     }
+                    //input
                     Console.WriteLine(" Please Enter Id of Menu you want to append to");
                     string inputMenuID = Console.ReadLine();
-
-                    int MenuID;
-                    while (!int.TryParse(inputMenuID, out MenuID))
+                    //checking if it is int 
+                    bool testinginputMenuID = int.TryParse(inputMenuID, out int MenuID);
+                    while (!testinginputMenuID)
                     {
-                        Console.WriteLine("\n\nWrong input Please see example (1/2/3/4/53)\n");
-                        Console.WriteLine(" Please Enter Id of Menu");
+                        Console.Clear();
+                        foreach (var x in collectiontemp.AsQueryable())//showing all menu choices
+                        {
+                            Console.WriteLine($"Id = {x.Id}\n" +
+                                $"Name = {x.Name}\n");
+                        }
+                        Console.WriteLine("\nThat is not a number please try again\n");
+                        Console.WriteLine(" Please Enter Id of Menu you want to append to");
                         inputMenuID = Console.ReadLine();
+                        testinginputMenuID = int.TryParse(inputMenuID, out MenuID);
                     }
-
+                    //checking if menu exist
+                    //create range to check 
+                    int[] array = new int[collectiontemp.Count];
+                    int tempi = 0;
+                    foreach (var x in collectiontemp.AsQueryable())
+                    {
+                        array[tempi] = x.Id;
+                        tempi++;
+                    }
+                    // check 
+                    bool checking = array.Contains(MenuID);
+                    while (!checking)
+                    {
+                        Console.Clear();
+                        foreach (var x in collectiontemp.AsQueryable())//showing all menu choices
+                        {
+                            Console.WriteLine($"Id = {x.Id}\n" +
+                                $"Name = {x.Name}\n");
+                        }
+                        Console.WriteLine("\nThat Menu does not exist\n");
+                        Console.WriteLine(" Please Enter Id of Menu you want to append to");
+                        inputMenuID = Console.ReadLine();
+                        checking = array.Contains(int.TryParse(inputMenuID, out MenuID) ? MenuID : 1000 );
+                    }
                     //convertion for input
                     var store = new DataStore("data.json");
                     var collection = store.GetCollection<MenuItem>();
@@ -525,14 +601,71 @@ namespace Jack_Darcy_Restaurant.Pages
                     var store = new DataStore("data.json");
                     var collection = store.GetCollection<MenuItem>();
      
-                    foreach (var x in collection.AsQueryable())
+                    foreach (var x in collection.AsQueryable())// showing all products
                     {
                         Console.WriteLine($"Id = {x.Id}\n" +
                             $"Name = {x.Name}\n" +
                             $"Price = {String.Format("{0:N2} Euro", x.Price)}\n\n");
                     }
+
+
                     Console.WriteLine("Please enter Id of Product you wanne delete");
-                    string input1 = Console.ReadLine();
+                    string input1 = Console.ReadLine();//input
+                    //check input for number
+
+                    bool testinginputID = int.TryParse(input1, out int ID);
+                    while (!testinginputID)
+                    {
+                        Console.Clear();
+                        foreach (var x in collection.AsQueryable())//showing all menu choices
+                        {
+                            Console.WriteLine($"Id = {x.Id}\n" +
+                                $"Name = {x.Name}\n");
+                        }
+                        Console.WriteLine("\nThat is not a number please try again\n");
+                        Console.WriteLine(" Please Enter Id of Menu you want to append to");
+                        input1 = Console.ReadLine();
+                        testinginputID = int.TryParse(input1, out ID);
+                    }
+                    //checking if menu exist
+                    //create range to check 
+                    int[] array = new int[collection.Count];
+                    int tempi = 0;
+                    foreach (var x in collection.AsQueryable())
+                    {
+                        array[tempi] = x.Id;
+                        tempi++;
+                    }
+                    // check 
+                    bool checking = array.Contains(ID);
+                    while (!checking)
+                    {
+                        Console.Clear();
+                        foreach (var x in collection.AsQueryable())//showing all menu choices
+                        {
+                            Console.WriteLine($"Id = {x.Id}\n" +
+                                $"Name = {x.Name}\n"+
+                                $"Price = {x.Price}\n");
+                        }
+                        
+                        Console.WriteLine("\nThat Menu does not exist\n");
+                        Console.WriteLine(" Please Enter Id of Menu you want to append to");
+                        input1 = Console.ReadLine();
+                        checking = array.Contains(int.TryParse(input1, out ID) ? ID : 1000);
+                    }
+                    Console.Clear();
+                    collection.DeleteMany(z => z.Id == ID);
+                    Console.WriteLine("showing new list of Product");
+                    foreach (var x in collection.AsQueryable())
+                    {
+                        Console.WriteLine($"Id = {x.Id}\n" +
+                            $"Name = {x.Name}\n" +
+                            $"Price = {x.Price}\n");
+                    }
+                    Console.ReadLine();
+                    Menus.PageHandlerMenu();
+                    //check if number is in products-----------
+                    /*
                     bool testingInput1 = int.TryParse(input1, out int intinput1);
                     if (testingInput1)
                     {
@@ -562,7 +695,7 @@ namespace Jack_Darcy_Restaurant.Pages
                         Console.ReadLine();
                         Menus.RemoveMenu();
                     }
-
+                    */
 
 
                 }
