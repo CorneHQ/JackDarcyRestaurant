@@ -602,7 +602,7 @@ namespace Jack_Darcy_Restaurant.Pages
             string s = $"Choose your feature \n";
             s += $"[0] Go back \n";
             s += $"[1] Show the menu \n";
-            if (Manager.Role.Name.ToLower() == "owner")
+            if (Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
             {
                 s += $"[2] Add menu \n";
                 s += $"[3] Remove Menu \n";
@@ -627,24 +627,24 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.Clear();
                     Menus.ShowMenus();
                 }
-                else if (page == 2 && Manager.Role.Name.ToLower() == "owner")
+                else if (page == 2 && Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
                 {
                     Console.Clear();
                     // hier moet dus een soort van if statement staan geld voor elke statement
                     Menus.AddMenu(); // moet eerst checken of ik de permission hier heb 
                 }
-                else if (page == 3 && Manager.Role.Name.ToLower() == "owner")
+                else if (page == 3 && Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
                 {
                     Console.Clear();
                     Menus.RemoveMenu();
 
                 }
-                else if (page == 4 && Manager.Role.Name.ToLower() == "owner")
+                else if (page == 4 && Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
                 {
                     Console.Clear();
                     Menus.AddProduct();
                 }
-                else if (page == 5 && Manager.Role.Name.ToLower() == "owner")
+                else if (page == 5 && Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
                 {
                     Console.Clear();
                     Menus.RemoveProduct();
