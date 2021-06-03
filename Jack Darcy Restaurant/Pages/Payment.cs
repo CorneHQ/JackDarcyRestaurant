@@ -12,7 +12,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             if (amount == 0)
             {
-                Console.WriteLine("price is 0");
+                Console.WriteLine("The price is 0,00 Euro, please continue");
                 Program.ToMainMenu();
             }
             Console.WriteLine($"Your amount is ${amount}");
@@ -27,18 +27,18 @@ namespace Jack_Darcy_Restaurant.Pages
             }
             
             Console.Clear();
-            Console.WriteLine("please enter your expiration date (MM/YYYY)");
+            Console.WriteLine("Please enter your expiration date (MM/YYYY)");
             string expiryDate = Console.ReadLine();
             
             Console.Clear();
-            Console.WriteLine("please enter your cvv");
+            Console.WriteLine("Please enter your cvv");
             string cvv = Console.ReadLine();
 
             Console.Clear();
             BigInteger number;
             if(!BigInteger.TryParse(cardId, out number))
             {
-                Console.WriteLine("credit card is not a number");
+                Console.WriteLine("Credit card is not a number");
                 Program.ToMainMenu();
             }
             int sum = 0;
@@ -70,7 +70,7 @@ namespace Jack_Darcy_Restaurant.Pages
 
             if (!cvvCheck.IsMatch(cvv))
             {
-                Console.WriteLine("cvv invalid");
+                Console.WriteLine("CVV invalid");
                 Program.ToMainMenu();
             }
             
@@ -90,9 +90,9 @@ namespace Jack_Darcy_Restaurant.Pages
             {
                 Manager.User.Cart.Clear();
                 DB.UpdateUser(Manager.User);
-                Console.WriteLine("processing");
+                Console.WriteLine("Processing");
                 System.Threading.Thread.Sleep(2000);
-                Console.WriteLine("payment succesfull");
+                Console.WriteLine("Payment succesfull");
                 Program.ToMainMenu();
             }
         }
