@@ -20,7 +20,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             Console.WriteLine("Please enter your card number");
             string cardId = Console.ReadLine();
-            if(cardId.Length < 16)
+            if(cardId.Length < 8 && cardId.Length > 18)
             {
                 Console.WriteLine("credit card does is not long enough");
                 Program.ToMainMenu();
