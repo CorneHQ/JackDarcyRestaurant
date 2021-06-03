@@ -12,7 +12,7 @@ namespace Jack_Darcy_Restaurant.Pages
         {
             Console.Clear();
             Permisions.CheckPermisions(0);
-            Console.WriteLine("login");
+            Console.WriteLine("Login");
             Console.WriteLine("Enter your Username:");
             string username = Console.ReadLine();
 
@@ -42,15 +42,23 @@ namespace Jack_Darcy_Restaurant.Pages
 
             Console.Clear();
             User[] users = DB.LoadUser();
+            
             bool validate = false;
-            if(users.Length == 0)
+            if(users.ToString().Contains(username))
+            {
+                Console.WriteLine("Failed username exist");
+                Program.ToMainMenu();
+                return;
+            }
+
+            if (users.Length == 0)
             {
                 Console.WriteLine("Failed no user exist");
                 Program.ToMainMenu();
                 return;
             }
             
-            if (username != "" && password != "")
+            if (username != "" || password != "")
             {
 
                 foreach (User user in users)
@@ -64,10 +72,11 @@ namespace Jack_Darcy_Restaurant.Pages
 
             } else
             {
-                Console.WriteLine("blank Username/Password");
+                Console.WriteLine(username == "" ? "Blank Username": "Blank Password");
                 Program.ToMainMenu();
                 return;
             }
+
             if (!validate)
             {
                 Console.WriteLine("Failed wrong Username/Password");
@@ -84,7 +93,7 @@ namespace Jack_Darcy_Restaurant.Pages
         {
             Console.Clear();
             Permisions.CheckPermisions(0);
-            Console.WriteLine("register");
+            Console.WriteLine("Register");
             Console.WriteLine("Enter your Username:");
             string username = Console.ReadLine();
 
@@ -115,12 +124,23 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             if (username == "" || password == "" || email == "")
             {
-                Console.WriteLine("No empty field allowed");
+                Console.WriteLine(username == "" ? "No empty username allowed" : password == "" ? "No empty password allowed" : "No empty email allowed");
                 Program.ToMainMenu();
                 return;
             }
+
+            foreach (User u in DB.LoadUser())
+            {
+                if(u.Name == username || u.Email == email)
+                {
+                    Console.WriteLine(u.Name == username ? "Failed username exist": "Failed email exist");
+                    Program.ToMainMenu();
+                    return;
+                }
+            }
+            
             User user = new User(1, username, password, email, 0);
-            if (DB.SetUser(user))
+            if (email.Contains('@') && new System.Net.Mail.MailAddress(email).Address == email && DB.SetUser(user))
             {
                 if (user.Validate(username, password))
                 {
@@ -132,7 +152,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
             } else
             {
-                Console.WriteLine("Not a unique email");
+                Console.WriteLine("Not a valid email");
             }
 
             Program.ToMainMenu();
