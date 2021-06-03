@@ -627,24 +627,106 @@ namespace Jack_Darcy_Restaurant.Pages
                 else if (page == 2)
                 {
                     Console.Clear();
-                    // hier moet dus een soort van if statement staan geld voor elke statement
-                    Menus.AddMenu(); // moet eerst checken of ik de permission hier heb 
+                    if(Manager.Role == null)//check current user and look if he has permission 
+                    {
+                        Console.WriteLine("" +
+                            "You have No Permissions\n" +
+                            "Please Login \n" +
+                            "Press 'enter' to return");
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
+                        
+                    }
+                    else if (Manager.Role.Add_Menu == true)
+                    {
+                        Menus.AddMenu();
+                    }
+                    else
+                    {
+                        Console.WriteLine("" +
+                            "You have No Permissions\n" +
+                            "Press 'enter' to return");
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
+                    }
                 }
                 else if (page == 3)
                 {
                     Console.Clear();
-                    Menus.RemoveMenu();
+                    if (Manager.Role == null)//check current user and look if he has permission 
+                    {
+                        Console.WriteLine("" +
+                            "You have No Permissions\n" +
+                            "Please Login \n" +
+                            "Press 'enter' to return");
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
 
+                    }
+                    else if (Manager.Role.Edit_Menu == true)
+                    {
+                        Menus.RemoveMenu();
+                    }
+                    else
+                    {
+                        Console.WriteLine("" +
+                            "You have No Permissions\n" +
+                            "Press 'enter' to return");
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
+                    }
                 }
                 else if (page == 4)
                 {
                     Console.Clear();
-                    Menus.AddProduct();
+                    if (Manager.Role == null)//check current user and look if he has permission 
+                    {
+                        Console.WriteLine("" +
+                            "You have No Permissions\n" +
+                            "Please Login \n" +
+                            "Press 'enter' to return");
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
+
+                    }
+                    else if (Manager.Role.Add_Menu == true)
+                    {
+                        Menus.AddProduct();
+                    }
+                    else
+                    {
+                        Console.WriteLine("" +
+                            "You have No Permissions\n" +
+                            "Press 'enter' to return");
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
+                    }
                 }
                 else if (page == 5)
                 {
                     Console.Clear();
-                    Menus.RemoveProduct();
+                    if (Manager.Role == null)//check current user and look if he has permission 
+                    {
+                        Console.WriteLine("" +
+                            "You have No Permissions\n" +
+                            "Please Login \n" +
+                            "Press 'enter' to return");
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
+
+                    }
+                    else if (Manager.Role.Edit_Menu == true)
+                    {
+                        Menus.RemoveProduct();
+                    }
+                    else
+                    {
+                        Console.WriteLine("" +
+                            "You have No Permissions\n" +
+                            "Press 'enter' to return");
+                        Console.ReadLine();
+                        Menus.PageHandlerMenu();
+                    }
                 }
                 else
                 {
