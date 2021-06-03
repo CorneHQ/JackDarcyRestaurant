@@ -25,11 +25,9 @@ namespace Jack_Darcy_Restaurant.Pages
 
             if(showError != "")
             {
-                Console.WriteLine("\n");
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine(showError);
                 Console.ResetColor();
-                Console.WriteLine("\n");
                 showError = "";
             }
 
@@ -49,8 +47,9 @@ namespace Jack_Darcy_Restaurant.Pages
                 ShowMenu(Menu);
             } else
             {
-                showError = "Menu does not exist. Please try it again.";
-                PageHandler.switchPage(3);
+                Console.Clear();
+                showError = "Menu does not exist. Please try it again.\n";
+                ShowMenus();
             }
         }
 
@@ -92,11 +91,9 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             if (showError != "")
             {
-                Console.WriteLine("\n");
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine(showError);
                 Console.ResetColor();
-                Console.WriteLine("\n");
                 showError = "";
             }
 
@@ -171,39 +168,12 @@ namespace Jack_Darcy_Restaurant.Pages
                         }
                     } else
                     {
-                        showError = "Filter option doesn't exist!";
+                        showError = "Filter option doesn't exist!\n";
                         ShowMenu(menuId);
                     }
                 } else if (key == ConsoleKey.Tab)
                 {
-                    Console.WriteLine("Please enter the ID of the product");
-                    string Output = Console.ReadLine();
-                    int dishChoose;
-                    if (!Int32.TryParse(Output, out dishChoose))
-                    {
-                        Console.WriteLine("Failed");
-                        Program.ToMainMenu();
-                        break;
-                    }
-                    MenuItem m =  menuItems.AsQueryable().FirstOrDefault(m => m.Id == dishChoose || m.Name == Output);
-                    Console.WriteLine("Please enter the quantity: ");
-                    string q = Console.ReadLine();
-                    if (!Int32.TryParse(q, out int Quantity))
-                    {
-                        Console.WriteLine("Invalid quantity");
-                        Program.ToMainMenu();
-                        break;
-                    }
-                    m.Quantity = Quantity;
-                    if (m != null)
-                    {
-                        DB.UpdateCart(m);
-                        Console.WriteLine("Success");
-                    } else
-                    {
-                        Console.WriteLine("Failed");
-                    }
-                    Program.ToMainMenu();
+                    Order(menuId, menuItems);
                     break;
                 }
                 //string itemName = Console.ReadLine();
@@ -221,7 +191,39 @@ namespace Jack_Darcy_Restaurant.Pages
             }
         }
 
-        static void AddMenu() // note voor devin json de data is opgeslagen in een array in een object 
+        private static void Order(int menuId, IEnumerable<MenuItem> menuItems)
+        {
+            Console.WriteLine("Please enter the ID of the product");
+            string Output = Console.ReadLine();
+            int dishChoose;
+            if (!Int32.TryParse(Output, out dishChoose))
+            {
+                showError = "Invalid product ID\n";
+                ShowMenu(menuId);
+            }
+            MenuItem m = menuItems.AsQueryable().FirstOrDefault(m => m.Id == dishChoose || m.Name == Output);
+            if (m != null)
+            {
+                Console.WriteLine("Please enter the quantity: ");
+                string q = Console.ReadLine();
+                if (!Int32.TryParse(q, out int Quantity) || Quantity < 1)
+                {
+                    showError = "Invalid quantity\n";
+                    ShowMenu(menuId);
+                }
+                m.Quantity = Quantity;
+                DB.UpdateCart(m);
+                Console.WriteLine("Product successfully added to cart");
+                Program.ToMainMenu();
+            }
+            else
+            {
+                showError = "Invalid product ID\n";
+                ShowMenu(menuId);
+            }
+        }
+
+            static void AddMenu() // note voor devin json de data is opgeslagen in een array in een object 
         {
             Console.Clear();
             Console.WriteLine("Welcome to Add Menu Feature\n");
@@ -401,7 +403,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 else if (IntInput == 1)
                 {
                     Console.Clear();
-                    Console.WriteLine(" Welcome in the add Product Fearture");
+                    Console.WriteLine(" Welcome to the add product feature");
                     Console.WriteLine(" Please Enter Product Name");
                     string name = Console.ReadLine();
                     Console.WriteLine(" Please Enter Price (example = 10.10)");

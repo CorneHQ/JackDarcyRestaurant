@@ -85,7 +85,6 @@ namespace Jack_Darcy_Restaurant.Models
             var collection = store.GetCollection<User>();
             User c = collection.AsQueryable().FirstOrDefault(e => e.Id == Manager.User.Id);
             if (c == null) return false;
-
             c.Cart.Add(menuItem);
             collection.ReplaceOne(c.Id, c);
             return true;
