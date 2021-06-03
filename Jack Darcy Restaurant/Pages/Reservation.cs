@@ -11,6 +11,7 @@ namespace Jack_Darcy_Restaurant.Pages
     {
         public static List<string> errors;
 
+        // Show the menu where a user can choice if he wants to add an reservation or want to see all the reservations
         public static void showMenu()
         {
             showErrors();
@@ -24,6 +25,8 @@ namespace Jack_Darcy_Restaurant.Pages
             string Output = Console.ReadLine();
             int Page;
             bool success = Int32.TryParse(Output, out Page);
+
+            // Checks if the given number is valid and within the available options
             if (success && allowedNumbers.Contains(Page))
                 if(Page == 2)
                 {
@@ -46,6 +49,7 @@ namespace Jack_Darcy_Restaurant.Pages
             }
         }
 
+        // Show all the errors that are in the errors field
         private static void showErrors()
         {
             if(errors != null && errors.Count > 0)

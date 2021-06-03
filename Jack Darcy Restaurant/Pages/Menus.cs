@@ -76,12 +76,12 @@ namespace Jack_Darcy_Restaurant.Pages
 
             if(filterCategory != "all")
             {
-                collection = collection.Where(m => m.Category.Contains(filterCategory));
+                collection = collection.Where(m => m.Category.ToLower().Contains(filterCategory.ToLower()));
             }
 
             if(filterName != "all")
             {
-                collection = collection.Where(m => m.Name.Contains(filterName));
+                collection = collection.Where(m => m.Name.ToLower().Contains(filterName.ToLower()));
             }
           
             return collection;
@@ -113,7 +113,9 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
             }
             menuTable.Write(Format.Alternative);
-            Console.WriteLine("Please press 'Backspace' to customize the filters or press 'Enter' to go back to the main menu or press 'Esc' to go back to the menu list");
+            Console.WriteLine("Please press 'Backspace' to customize the filters");
+            Console.WriteLine("Please press 'Enter' to go back to the main menu");
+            Console.WriteLine("Please press 'Esc' to go back to the menu list");
             Console.WriteLine("Please press 'Tab' to add a dish to your shopping cart");
             while (true)
             {
