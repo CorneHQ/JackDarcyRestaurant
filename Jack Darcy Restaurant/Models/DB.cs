@@ -19,7 +19,7 @@ namespace Jack_Darcy_Restaurant.Models
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
             int i = collection.AsQueryable().Where(e => e.Email == newUser.Email).Count();
-            bool result = collection.AsQueryable().Where(e => e.Email == newUser.Email).Count() == 1;
+            bool result = collection.AsQueryable().Where(e => e.Email == newUser.Email).Count() == 1 || collection.AsQueryable().Where(e => e.Name == newUser.Name).Count() == 1;
             if (result) return false;
             collection.InsertOne(newUser);
             return true;
