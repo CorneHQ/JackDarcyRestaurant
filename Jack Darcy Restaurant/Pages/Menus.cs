@@ -627,24 +627,24 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.Clear();
                     Menus.ShowMenus();
                 }
-                else if (page == 2)
+                else if (page == 2 && Manager.Role.Name.ToLower() == "owner")
                 {
                     Console.Clear();
                     // hier moet dus een soort van if statement staan geld voor elke statement
                     Menus.AddMenu(); // moet eerst checken of ik de permission hier heb 
                 }
-                else if (page == 3)
+                else if (page == 3 && Manager.Role.Name.ToLower() == "owner")
                 {
                     Console.Clear();
                     Menus.RemoveMenu();
 
                 }
-                else if (page == 4)
+                else if (page == 4 && Manager.Role.Name.ToLower() == "owner")
                 {
                     Console.Clear();
                     Menus.AddProduct();
                 }
-                else if (page == 5)
+                else if (page == 5 && Manager.Role.Name.ToLower() == "owner")
                 {
                     Console.Clear();
                     Menus.RemoveProduct();
