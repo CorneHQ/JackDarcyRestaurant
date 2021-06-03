@@ -601,11 +601,14 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             string s = $"Choose your feature \n";
             s += $"[0] Go back \n";
-            s += $"[1] Showing the menu \n";
-            s += $"[2] Add menu \n";
-            s += $"[3] Remove Menu \n";
-            s += $"[4] Add Product to existing Menu \n";
-            s += $"[5] Remove product from existing Menu \n"; 
+            s += $"[1] Show the menu \n";
+            if (Manager.Role.Name.ToLower() == "owner")
+            {
+                s += $"[2] Add menu \n";
+                s += $"[3] Remove Menu \n";
+                s += $"[4] Add Product to existing Menu \n";
+                s += $"[5] Remove product from existing Menu \n";
+            }
 
 
 

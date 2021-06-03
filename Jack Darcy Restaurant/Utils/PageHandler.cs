@@ -36,7 +36,7 @@ namespace Jack_Darcy_Restaurant.Utils
             {
                 Authenticate.Logout();
             }
-            else if (Manager.User != null && newPage == 6)
+            else if (Manager.User != null && newPage == 6 && Manager.Role.Name.ToLower() == "owner")
             {
                 Admin.ManageUsers();
             } else if(newPage == 7)
