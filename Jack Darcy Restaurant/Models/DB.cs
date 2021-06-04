@@ -5,7 +5,7 @@ namespace Jack_Darcy_Restaurant.Models
 {
     public class DB
     {
-        public static User[] LoadUser()
+        public static User[] LoadUser()//take data from json file to put it in an array, returns object arrays
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
@@ -14,7 +14,7 @@ namespace Jack_Darcy_Restaurant.Models
             return users;
         }
 
-        public static bool SetUser(User newUser)
+        public static bool SetUser(User newUser)//
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
