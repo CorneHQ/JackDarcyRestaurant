@@ -26,11 +26,9 @@ namespace Jack_Darcy_Restaurant.Pages
 
             if(showError != "")
             {
-                Console.WriteLine("\n");
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine(showError);
                 Console.ResetColor();
-                Console.WriteLine("\n");
                 showError = "";
             }
 
@@ -50,8 +48,9 @@ namespace Jack_Darcy_Restaurant.Pages
                 ShowMenu(Menu);
             } else
             {
-                showError = "Menu does not exist. Please try it again.";
-                PageHandler.switchPage(3);
+                Console.Clear();
+                showError = "Menu does not exist. Please try it again.\n";
+                ShowMenus();
             }
         }
 
@@ -77,12 +76,12 @@ namespace Jack_Darcy_Restaurant.Pages
 
             if(filterCategory != "all")
             {
-                collection = collection.Where(m => m.Category.Contains(filterCategory));
+                collection = collection.Where(m => m.Category.ToLower().Contains(filterCategory.ToLower()));
             }
 
             if(filterName != "all")
             {
-                collection = collection.Where(m => m.Name.Contains(filterName));
+                collection = collection.Where(m => m.Name.ToLower().Contains(filterName.ToLower()));
             }
           
             return collection;
@@ -93,11 +92,9 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             if (showError != "")
             {
-                Console.WriteLine("\n");
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine(showError);
                 Console.ResetColor();
-                Console.WriteLine("\n");
                 showError = "";
             }
 
@@ -114,7 +111,9 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
             }
             menuTable.Write(Format.Alternative);
-            Console.WriteLine("Please press 'Backspace' to customize the filters or press 'Enter' to go back to the main menu or press 'Esc' to go back to the menu list");
+            Console.WriteLine("Please press 'Backspace' to customize the filters");
+            Console.WriteLine("Please press 'Enter' to go back to the main menu");
+            Console.WriteLine("Please press 'Esc' to go back to the menu list");
             Console.WriteLine("Please press 'Tab' to add a dish to your shopping cart");
             while (true)
             {
@@ -170,39 +169,12 @@ namespace Jack_Darcy_Restaurant.Pages
                         }
                     } else
                     {
-                        showError = "Filter option doesn't exist!";
+                        showError = "Filter option doesn't exist!\n";
                         ShowMenu(menuId);
                     }
                 } else if (key == ConsoleKey.Tab)
                 {
-                    Console.WriteLine("Please enter the ID of the product");
-                    string Output = Console.ReadLine();
-                    int dishChoose;
-                    if (!Int32.TryParse(Output, out dishChoose))
-                    {
-                        Console.WriteLine("Failed");
-                        Program.ToMainMenu();
-                        break;
-                    }
-                    MenuItem m =  menuItems.AsQueryable().FirstOrDefault(m => m.Id == dishChoose || m.Name == Output);
-                    Console.WriteLine("Please enter the quantity: ");
-                    string q = Console.ReadLine();
-                    if (!Int32.TryParse(q, out int Quantity))
-                    {
-                        Console.WriteLine("Invalid quantity");
-                        Program.ToMainMenu();
-                        break;
-                    }
-                    m.Quantity = Quantity;
-                    if (m != null)
-                    {
-                        DB.UpdateCart(m);
-                        Console.WriteLine("Success");
-                    } else
-                    {
-                        Console.WriteLine("Failed");
-                    }
-                    Program.ToMainMenu();
+                    Order(menuId, menuItems);
                     break;
                 }
                 //string itemName = Console.ReadLine();
@@ -220,7 +192,39 @@ namespace Jack_Darcy_Restaurant.Pages
             }
         }
 
-        static void AddMenu() // note voor devin json de data is opgeslagen in een array in een object 
+        private static void Order(int menuId, IEnumerable<MenuItem> menuItems)
+        {
+            Console.WriteLine("Please enter the ID of the product");
+            string Output = Console.ReadLine();
+            int dishChoose;
+            if (!Int32.TryParse(Output, out dishChoose))
+            {
+                showError = "Invalid product ID\n";
+                ShowMenu(menuId);
+            }
+            MenuItem m = menuItems.AsQueryable().FirstOrDefault(m => m.Id == dishChoose || m.Name == Output);
+            if (m != null)
+            {
+                Console.WriteLine("Please enter the quantity: ");
+                string q = Console.ReadLine();
+                if (!Int32.TryParse(q, out int Quantity) || Quantity < 1)
+                {
+                    showError = "Invalid quantity\n";
+                    ShowMenu(menuId);
+                }
+                m.Quantity = Quantity;
+                DB.UpdateCart(m);
+                Console.WriteLine("Product successfully added to cart");
+                Program.ToMainMenu();
+            }
+            else
+            {
+                showError = "Invalid product ID\n";
+                ShowMenu(menuId);
+            }
+        }
+
+            static void AddMenu() // note voor devin json de data is opgeslagen in een array in een object 
         {
             Console.Clear();
             Console.WriteLine("Welcome to Add Menu Feature\n");
@@ -426,7 +430,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 else if (IntInput == 1)
                 {
                     Console.Clear();
-                    Console.WriteLine(" Welcome in the add Product Fearture");
+                    Console.WriteLine(" Welcome to the add product feature");
                     Console.WriteLine(" Please Enter Product Name");
                     string name = Console.ReadLine();
                     while (name == "")// check for name 
@@ -735,11 +739,14 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             string s = $"Choose your feature \n";
             s += $"[0] Go back \n";
-            s += $"[1] Showing the menu \n";
-            s += $"[2] Add menu \n";
-            s += $"[3] Remove Menu \n";
-            s += $"[4] Add Product to existing Menu \n";
-            s += $"[5] Remove product from existing Menu \n"; 
+            s += $"[1] Show the menu \n";
+            if (Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
+            {
+                s += $"[2] Add menu \n";
+                s += $"[3] Remove Menu \n";
+                s += $"[4] Add Product to existing Menu \n";
+                s += $"[5] Remove product from existing Menu \n";
+            }
 
 
 
@@ -758,7 +765,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.Clear();
                     Menus.ShowMenus();
                 }
-                else if (page == 2)
+                else if (page == 2 && Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
                 {
                     Console.Clear();
                     if(Manager.Role == null)//check current user and look if he has permission 
@@ -784,7 +791,7 @@ namespace Jack_Darcy_Restaurant.Pages
                         Menus.PageHandlerMenu();
                     }
                 }
-                else if (page == 3)
+                else if (page == 3 && Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
                 {
                     Console.Clear();
                     if (Manager.Role == null)//check current user and look if he has permission 
@@ -810,7 +817,7 @@ namespace Jack_Darcy_Restaurant.Pages
                         Menus.PageHandlerMenu();
                     }
                 }
-                else if (page == 4)
+                else if (page == 4 && Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
                 {
                     Console.Clear();
                     if (Manager.Role == null)//check current user and look if he has permission 
@@ -836,7 +843,7 @@ namespace Jack_Darcy_Restaurant.Pages
                         Menus.PageHandlerMenu();
                     }
                 }
-                else if (page == 5)
+                else if (page == 5 && Manager.Role.Name.ToLower() == "owner" || Manager.Role.Name.ToLower() == "chef")
                 {
                     Console.Clear();
                     if (Manager.Role == null)//check current user and look if he has permission 

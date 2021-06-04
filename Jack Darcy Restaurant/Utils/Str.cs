@@ -6,6 +6,7 @@ namespace Jack_Darcy_Restaurant.Utils
 {
     public class Str
     {
+        // Generates a unique reservation code with only uppercase letters
         public static string randomRegistrationKey(int length = 8)
         {
             char[] alphabet = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
