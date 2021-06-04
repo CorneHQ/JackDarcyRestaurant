@@ -137,15 +137,15 @@ namespace Jack_Darcy_Restaurant.Models
                     Add_Reservation = true,
                     See_Reservation = true,
                     See_All_Reservations = true,
-                    Cancel_Reservation = false,
+                    Cancel_Reservation = true,
                     See_Menu = true,
-                    Add_Menu = false,
-                    Edit_Menu = false,
+                    Add_Menu = true,
+                    Edit_Menu = true,
                     Assign_Roles = true,
                     Add_Reservation_Customer = true,
                     Edit_Roles = true,
                     See_Transactions = true,
-                    See_Takeaway_Orders = false,
+                    See_Takeaway_Orders = true,
                     Access_Shopping_Card = true
                 },
                 new Role {
@@ -195,7 +195,9 @@ namespace Jack_Darcy_Restaurant.Models
             if (collection.Count == 0)
             {
                 User user = new User(0, "owner", "secret", "owner@jackdarcy.com", 1);
+                User user5 = new User(1, "user", "user", "User@user.com", 0);           
                 SetUser(user);
+                SetUser(user5);
             }
         }
 
