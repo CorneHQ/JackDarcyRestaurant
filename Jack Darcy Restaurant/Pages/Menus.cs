@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using ConsoleTables;
@@ -441,7 +442,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     string inputPrice = Console.ReadLine();
 
                     double Price;
-                    while (!double.TryParse(inputPrice.Replace(',','.'), out Price))// check for price
+                    while (!Double.TryParse(inputPrice.Replace(',','.'), NumberStyles.Number, CultureInfo.InvariantCulture, out Price))// check for price
                     {
                         Console.WriteLine("Wrong input Please see example (15.53)");
                         inputPrice = Console.ReadLine();
@@ -541,7 +542,7 @@ namespace Jack_Darcy_Restaurant.Pages
                         $"Id = {total},\n " +
                         $"Menu_Id = {MenuID},\n " +
                         $"Name = {name},\n " +
-                        $"Price = {Price},\n " +
+                        $"Price = {String.Format("{0:N2} Euro", Price)},\n " +
                         $"Vegan = {Vegan},\n " +
                         $"Category = {Category} \n "
                         );
@@ -655,12 +656,12 @@ namespace Jack_Darcy_Restaurant.Pages
                     }
                     Console.Clear();
                     collection.DeleteMany(z => z.Id == ID);
-                    Console.WriteLine("showing new list of Product");
+                    Console.WriteLine("Showing new list of Product");
                     foreach (var x in collection.AsQueryable())
                     {
                         Console.WriteLine($"Id = {x.Id}\n" +
                             $"Name = {x.Name}\n" +
-                            $"Price = {x.Price}\n");
+                            $"Price = {String.Format("{0:N2} Euro", x.Price)}\n");
                     }
                     Console.ReadLine();
                     Menus.PageHandlerMenu();
