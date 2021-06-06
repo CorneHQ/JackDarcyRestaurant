@@ -46,16 +46,6 @@ namespace Jack_Darcy_Restaurant.Models
             collection.DeleteOne(a => a.Id == user.Id);
             return true;
         }
-
-        public static bool RemoveCart()
-        {
-            var store = new DataStore("data.json");
-            var collection = store.GetCollection<User>();
-            User c = collection.AsQueryable().FirstOrDefault(e => e.Id == Manager.User.Id);
-            c.Cart.Clear();
-            return true;
-        }
-
         public static Role GetRole(int ID)
         {
             var store = new DataStore("data.json");
@@ -89,14 +79,6 @@ namespace Jack_Darcy_Restaurant.Models
             c.Cart.Add(menuItem);
             collection.ReplaceOne(c.Id, c);
             return true;
-        }
-        public static User[] LoadCart()
-        {
-            var store = new DataStore("data.json");
-            var collection = store.GetCollection<User>();
-
-            User[] carts = collection.AsQueryable().ToArray<User>();
-            return carts;
         }
         public static MenuItem[] LoadMenuItems()
         {

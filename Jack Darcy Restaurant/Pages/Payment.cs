@@ -29,6 +29,8 @@ namespace Jack_Darcy_Restaurant.Pages
             int sum = 0;
             int temp;
             bool b = true;
+            //https://en.wikipedia.org/wiki/Luhn_algorithm
+            //using luhn algorith where is look at the last number each loop
             while (number > 0)
             {
 
@@ -42,13 +44,13 @@ namespace Jack_Darcy_Restaurant.Pages
                 sum += temp;
                 number = number / 10;
             }
-
+            // its valid if sum% 0 == 0 else it's not valid
             if (sum % 10 != 0)
             {
                 Console.WriteLine("Card number not valid");
                 Program.ToMainMenu();
             }
-
+            // made regex to validate the date and cvv
             Regex monthCheck = new Regex(@"^(0[0-9]|1[0-2])$");
             Regex yearCheck = new Regex(@"^20[0-9]{2}$");
             Regex cvvCheck = new Regex(@"^\d{3}$");
@@ -68,9 +70,10 @@ namespace Jack_Darcy_Restaurant.Pages
 
             var year = int.Parse(dateParts[1]);
             var month = int.Parse(dateParts[0]);
-            var lastDateOfExpiryMonth = DateTime.DaysInMonth(year, month); //get actual expiry date
-            var cardExpiry = new DateTime(year, month, lastDateOfExpiryMonth, 23, 59, 59);
+            var lastDateOfExpiryMonth = DateTime.DaysInMonth(year, month); //get the last day of the given moth and year
+            var cardExpiry = new DateTime(year, month, lastDateOfExpiryMonth, 23, 59, 59);// the full date when it wil expire
 
+            // check if the card is expired
             if (cardExpiry > DateTime.Now && cardExpiry < DateTime.Now.AddYears(6))
             {
                 Manager.User.Cart.Clear();
