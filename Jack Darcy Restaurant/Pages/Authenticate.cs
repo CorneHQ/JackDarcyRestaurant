@@ -19,6 +19,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             Console.WriteLine("Enter your Password:");
             string password = "";
+            // for the passwords we dont want to show the password so we for the lenght of password you'll see stars
             bool stop = true;
             while (stop) {
                 ConsoleKey temp = Console.ReadKey(true).Key;
@@ -41,6 +42,7 @@ namespace Jack_Darcy_Restaurant.Pages
 
 
             Console.Clear();
+            //load all user to check if the given password and username matches a user 
             User[] users = DB.LoadUser();
             
             bool validate = false;
@@ -76,7 +78,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 Program.ToMainMenu();
                 return;
             }
-
+            // if no user is found give msg and go back to main menu
             if (!validate)
             {
                 Console.WriteLine("Failed wrong Username/Password");
@@ -84,7 +86,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 return;
 
             }
-
+            //no errors found you are logged in
             Console.WriteLine($"Welcome {username}, {Manager.Role.Name}");
             Program.ToMainMenu();
         }
@@ -100,6 +102,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.Clear();
             Console.WriteLine("Enter your Password:");
             string password = "";
+            // for the passwords we dont want to show the password so we for the lenght of password you'll see stars
             bool stop = true;
             while (stop)
             {
@@ -129,6 +132,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 return;
             }
 
+            //check whether a user exist with the given email or username
             foreach (User u in DB.LoadUser())
             {
                 if(u.Name == username || u.Email == email)
@@ -140,9 +144,10 @@ namespace Jack_Darcy_Restaurant.Pages
             }
             
             User user = new User(1, username, password, email, 0);
+            //check if email is valid and if user is succesfull added to the db
             if (email.Contains('@') && new System.Net.Mail.MailAddress(email).Address == email && DB.SetUser(user))
             {
-                if (user.Validate(username, password))
+                if (user.Validate(username, password))//use this to login
                 {
                     Console.WriteLine($"Welcome {username}, {Manager.Role.Name}");
                 }
