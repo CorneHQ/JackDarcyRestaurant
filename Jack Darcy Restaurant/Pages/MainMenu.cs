@@ -18,9 +18,9 @@ namespace Jack_Darcy_Restaurant.Pages
 
             if (Manager.User == null) s += $"[2] Register \n";
 
-            s += $"[3] Show Menus \n";
-            if (Manager.Role != null ) s += $"[4] Reservations\n";
-            if (Manager.Role != null && Manager.Role.Name.ToLower() == "owner") s += $"[5] Manage users\n";
+            if (Manager.User != null) s += $"[3] Show Menus \n";
+            if (Manager.User != null ) s += $"[4] Reservations\n";
+            if (Manager.User != null && Manager.Role.Name.ToLower() == "owner") s += $"[5] Manage users\n";
             if (Manager.User != null) s += $"[6] View Cart\n";
             if (Manager.User != null) s += $"[7] Order\n";
             if (Manager.User != null) s += $"[8] Logout\n";
