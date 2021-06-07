@@ -39,7 +39,7 @@ namespace Jack_Darcy_Restaurant.Utils
             else if (Manager.User != null && newPage == 5 && Manager.Role.Name.ToLower() == "owner")
             {
                 Admin.ManageUsers();
-            } else if(newPage == 6)
+            } else if(Manager.User != null && newPage == 6)
             {
                 ViewCart.CurrentCart();
             }
