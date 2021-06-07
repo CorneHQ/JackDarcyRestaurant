@@ -24,7 +24,7 @@ namespace Jack_Darcy_Restaurant.Utils
             {
                 Authenticate.Register();
             }
-            else if (newPage == 3) 
+            else if (Manager.User != null && newPage == 3) 
             {
                 Menus.PageHandlerMenu();
             } 
@@ -36,7 +36,7 @@ namespace Jack_Darcy_Restaurant.Utils
             {
                 Authenticate.Logout();
             }
-            else if (Manager.User != null && newPage == 6 && Manager.Role.Name.ToLower() == "owner")
+            else if (Manager.User != null && newPage == 5 && Manager.Role.Name.ToLower() == "owner")
             {
                 Admin.ManageUsers();
             } else if(newPage == 6)
