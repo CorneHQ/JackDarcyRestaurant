@@ -8,6 +8,7 @@ namespace Jack_Darcy_Restaurant.Utils
 {
     public class PageHandler
     {
+        // Switches to a page with the given page ID
         public static void switchPage(int newPage)
         {
             Console.Clear();
@@ -29,14 +30,13 @@ namespace Jack_Darcy_Restaurant.Utils
             } 
             else if(Manager.Role != null && (Manager.Role.Add_Reservation_Customer || Manager.Role.See_Reservation || Manager.Role.Add_Reservation || Manager.Role.See_All_Reservations) && newPage == 4)
             {
-                //new page  
                 Pages.Reservation.showMenu();
             }
             else if (Manager.User != null && newPage == 8)
             {
                 Authenticate.Logout();
             }
-            else if (Manager.User != null && newPage == 5)
+            else if (Manager.User != null && newPage == 6 && Manager.Role.Name.ToLower() == "owner")
             {
                 Admin.ManageUsers();
             } else if(newPage == 6)

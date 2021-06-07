@@ -75,7 +75,6 @@ namespace Jack_Darcy_Restaurant.Models
             var collection = store.GetCollection<User>();
             User c = collection.AsQueryable().FirstOrDefault(e => e.Id == Manager.User.Id);
             if (c == null) return false;
-
             c.Cart.Add(menuItem);
             collection.ReplaceOne(c.Id, c);
             return true;
@@ -100,19 +99,19 @@ namespace Jack_Darcy_Restaurant.Models
                 new Role {
                     Id = 0,
                     Name = "Customer",
-                    Add_Reservation = true,
-                    See_Reservation = true,
-                    See_All_Reservations = false,
-                    Cancel_Reservation = true,
-                    See_Menu = true,
-                    Add_Menu = false,
-                    Edit_Menu = false,
-                    Assign_Roles = false,
-                    Add_Reservation_Customer = false,// dont know what this does
-                    Edit_Roles = false,
-                    See_Transactions = false,
-                    See_Takeaway_Orders = false,
-                    Access_Shopping_Card = true // dont know what this does
+                    Add_Reservation = true, // Can add an reservation
+                    See_Reservation = true, // Can only see his own reservations
+                    See_All_Reservations = false, // Can see all the reservations that are made
+                    Cancel_Reservation = true, // Can cancel reservations
+                    See_Menu = true, // Can see the menus
+                    Add_Menu = false, // Can add new menus
+                    Edit_Menu = false, // Edit an existing menus with new meals
+                    Assign_Roles = false, // Can assign a new role to an user
+                    Add_Reservation_Customer = false, // Can add an reservation to a user
+                    Edit_Roles = false, // Can edit the roles
+                    See_Transactions = false, // Can see the transactions
+                    See_Takeaway_Orders = false, // Can see the takeaway orders
+                    Access_Shopping_Card = true // Can access the shopping card and add meals to the shopping card
                 },
                 new Role {
                     Id = 1,
@@ -120,16 +119,16 @@ namespace Jack_Darcy_Restaurant.Models
                     Add_Reservation = true,
                     See_Reservation = true,
                     See_All_Reservations = true,
-                    Cancel_Reservation = false,
+                    Cancel_Reservation = true,
                     See_Menu = true,
-                    Add_Menu = false,
-                    Edit_Menu = false,
+                    Add_Menu = true,
+                    Edit_Menu = true,
                     Assign_Roles = true,
-                    Add_Reservation_Customer = true,// dont know what this does
+                    Add_Reservation_Customer = true,
                     Edit_Roles = true,
                     See_Transactions = true,
-                    See_Takeaway_Orders = false,
-                    Access_Shopping_Card = true // dont know what this does
+                    See_Takeaway_Orders = true,
+                    Access_Shopping_Card = true
                 },
                 new Role {
                     Id = 2,
@@ -142,11 +141,11 @@ namespace Jack_Darcy_Restaurant.Models
                     Add_Menu = true,
                     Edit_Menu = true,
                     Assign_Roles = false,
-                    Add_Reservation_Customer = false,// dont know what this does
+                    Add_Reservation_Customer = false,
                     Edit_Roles = false,
                     See_Transactions = false,
                     See_Takeaway_Orders = true,
-                    Access_Shopping_Card = true // dont know what this does
+                    Access_Shopping_Card = true
                 },
                 new Role {
                     Id = 3,
@@ -159,11 +158,11 @@ namespace Jack_Darcy_Restaurant.Models
                     Add_Menu = false,
                     Edit_Menu = false,
                     Assign_Roles = false,
-                    Add_Reservation_Customer = true,// dont know what this does
+                    Add_Reservation_Customer = true,
                     Edit_Roles = false,
                     See_Transactions = true,
                     See_Takeaway_Orders = true,
-                    Access_Shopping_Card = true // dont know what this does
+                    Access_Shopping_Card = true
                 }
             };
 
@@ -178,7 +177,9 @@ namespace Jack_Darcy_Restaurant.Models
             if (collection.Count == 0)
             {
                 User user = new User(0, "owner", "secret", "owner@jackdarcy.com", 1);
+                User user5 = new User(1, "user", "user", "User@user.com", 0);           
                 SetUser(user);
+                SetUser(user5);
             }
         }
 
@@ -186,178 +187,179 @@ namespace Jack_Darcy_Restaurant.Models
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Menu>();
-            collection.DeleteMany(e => e.Id > -1);
-            Menu[] menu =
+            if(collection.Count == 0)
             {
-                new Menu
-                {
-                    Id = 0,
-                    Name = "Appetizer"
-                },
-                new Menu
-                {
-                    Id = 1,
-                    Name = "Main Dish"
-                },
-                new Menu
-                {
-                    Id = 2,
-                    Name = "Side Dish"
-                },
-                new Menu
-                {
-                    Id = 3,
-                    Name = "Dessert"
-                },
-                new Menu
-                {
-                    Id = 4,
-                    Name = "Drinks"
-                }
-            };
-
-            collection.InsertMany(menu);
-
+                Menu[] menu = {
+                    new Menu
+                    {
+                        Id = 0,
+                        Name = "Appetizer"
+                    },
+                    new Menu
+                    {
+                        Id = 1,
+                        Name = "Main Dish"
+                    },
+                    new Menu
+                    {
+                        Id = 2,
+                        Name = "Side Dish"
+                    },
+                    new Menu
+                    {
+                        Id = 3,
+                        Name = "Dessert"
+                    },
+                    new Menu
+                    {
+                        Id = 4,
+                        Name = "Drinks"
+                    }
+                };
+                collection.InsertMany(menu);
+            }
            
         }
         public static void MenuItemInit()
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<MenuItem>();
-            collection.DeleteMany(e => e.Id > -1);
-            MenuItem[] menuitem =
+            if(collection.Count == 0)
             {
-                new MenuItem
+                MenuItem[] menuitem =
                 {
-                    Id = 0,
-                    Menu_Id = 0,
-                    Name = "Sping Rolls",
-                    Price = 3.00,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 0,
-                    Name = "Steamed Buns",
-                    Price = 4.00,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 0,
-                    Name = "Mais Soep",
-                    Price = 2.50,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 1,
-                    Name = "Ramen",
-                    Price = 12.00,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 1,
-                    Name = "Pokebolw",
-                    Price = 10.00,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 1,
-                    Name = "T-Bone Steak",
-                    Price = 25.50,
-                    Vegan = false,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 2,
-                    Name = "Salade Mix",
-                    Price = 5.00,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 2,
-                    Name = "Kim Chi",
-                    Price = 4.00,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 2,
-                    Name = "patat",
-                    Price = 2.60,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 3,
-                    Name = "Fruit Mix",
-                    Price = 3.00,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 3,
-                    Name = "1 Bol of Ice of choice",
-                    Price = 1.50,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 3,
-                    Name = "Random Alcohol Shot",
-                    Price = 5.00,
-                    Vegan = true,
-                    Category = "vezels"
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 4,
-                    Name = "all Drinks",
-                    Price = 2.00,
-                    Vegan = true,
-                    Category = ""
-                },
-                new MenuItem
-                {
-                    Id = 0,
-                    Menu_Id = 4,
-                    Name = "Alcoholic Drinks",
-                    Price = 6.00,
-                    Vegan = true,
-                    Category = ""
-                }
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 0,
+                        Name = "Spring Rolls",
+                        Price = 3.00,
+                        Vegan = true,
+                        Category = "Chinese"
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 0,
+                        Name = "Steamed Buns",
+                        Price = 4.00,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 0,
+                        Name = "Mais Soep",
+                        Price = 2.50,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 1,
+                        Name = "Ramen",
+                        Price = 12.00,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 1,
+                        Name = "Pokebolw",
+                        Price = 10.00,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 1,
+                        Name = "T-Bone Steak",
+                        Price = 25.50,
+                        Vegan = false,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 2,
+                        Name = "Salade Mix",
+                        Price = 5.00,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 2,
+                        Name = "Kim Chi",
+                        Price = 4.00,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 2,
+                        Name = "patat",
+                        Price = 2.60,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 3,
+                        Name = "Fruit Mix",
+                        Price = 3.00,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 3,
+                        Name = "1 Bol of Ice of choice",
+                        Price = 1.50,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 3,
+                        Name = "Random Alcohol Shot",
+                        Price = 5.00,
+                        Vegan = true,
+                        Category = "vezels"
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 4,
+                        Name = "all Drinks",
+                        Price = 2.00,
+                        Vegan = true,
+                        Category = ""
+                    },
+                    new MenuItem
+                    {
+                        Id = 0,
+                        Menu_Id = 4,
+                        Name = "Alcoholic Drinks",
+                        Price = 6.00,
+                        Vegan = true,
+                        Category = ""
+                    }
 
 
-            };
+                };
 
-            collection.InsertMany(menuitem);
+                collection.InsertMany(menuitem);
+            }
         }
     }
 
