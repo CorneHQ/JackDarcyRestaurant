@@ -19,12 +19,12 @@ namespace Jack_Darcy_Restaurant.Pages
 
 
 
-        public static void ShowMenus()
+        public static void ShowMenus()// showing menu 
         {
             Permisions.CheckPermisions(4);
             IEnumerable<Menu> menus = GetMenus();
 
-            if(showError != "")
+            if(showError != "")// if there is an error show it 
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine(showError);
@@ -32,7 +32,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 showError = "";
             }
 
-            Console.WriteLine("Please choose a menu:");
+            Console.WriteLine("Please choose a menu:");//showing all menus 
             foreach(Menu menu in menus)
             {
                 Console.WriteLine($"[{menu.Id}] {menu.Name}");
@@ -224,7 +224,7 @@ namespace Jack_Darcy_Restaurant.Pages
             }
         }
 
-            static void AddMenu() // note voor devin json de data is opgeslagen in een array in een object 
+        public static void AddMenu()
         {
             Console.Clear();
             Console.WriteLine("Welcome to Add Menu Feature\n");
@@ -233,14 +233,14 @@ namespace Jack_Darcy_Restaurant.Pages
                 "[1] To Add Menu \n");
             string input = Console.ReadLine();
             bool TestingInput = int.TryParse(input, out int IntInput);
-            if (TestingInput)
+            if (TestingInput)// 2 if else statements for testing input with little bit of recursion
             {
                 if (IntInput == 0)
                 {
                     Console.Clear();
                     Menus.PageHandlerMenu();
                 }
-                else if (IntInput == 1)
+                else if (IntInput == 1)// take name and create a menu with that name
                 {
                     Console.Clear();
                     Console.WriteLine(" Welcome in the addMenu Fearture");
@@ -314,7 +314,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 "[1] To Delete Menu \n");
             string input = Console.ReadLine();
             bool TestingInput = int.TryParse(input, out int IntInput);
-            if (TestingInput)
+            if (TestingInput)// a big if else statement for checking input
             {
                 if (IntInput == 0)
                 {
@@ -325,7 +325,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 {
                     Console.Clear();
 
-                    var store = new DataStore("data.json");// getting all the info of the data we have 
+                    var store = new DataStore("data.json");// get all the menus and print them out to show it 
                     var collection = store.GetCollection<Menu>();
                     foreach (var x in collection.AsQueryable())
                     {
@@ -335,7 +335,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     Console.WriteLine("Please enter Id of Menu you wanne delete");
                     string input1 = Console.ReadLine();
                     bool testingInput1 = int.TryParse(input1, out int intinput1);
-                    if (testingInput1)
+                    if (testingInput1)//checking input 
                     {
                         // get all the ID in a array
                         int[] allID = new int[collection.Count];
@@ -411,7 +411,7 @@ namespace Jack_Darcy_Restaurant.Pages
             }
             
         }
-        public static void AddProduct()
+        public static void AddProduct()// adding a product 
         {
             Console.Clear();
             Console.WriteLine("Welcome to Add Product Feature\n");
@@ -420,7 +420,7 @@ namespace Jack_Darcy_Restaurant.Pages
                 "[1] To Add Product \n");
             string input = Console.ReadLine();
             bool TestingInput = int.TryParse(input, out int IntInput);
-            if (TestingInput)
+            if (TestingInput)// big if else statement checking input with a bit recursion
             {
                 if (IntInput == 0)
                 {
@@ -429,8 +429,8 @@ namespace Jack_Darcy_Restaurant.Pages
                 }
                 else if (IntInput == 1)
                 {
-                    Console.Clear();
-                    Console.WriteLine(" Welcome to the add product feature");
+                    Console.Clear();// getting inputs 
+                    Console.WriteLine(" Welcome in the add Product Fearture");
                     Console.WriteLine(" Please Enter Product Name");
                     string name = Console.ReadLine();
                     while (name == "")// check for name 
@@ -734,7 +734,7 @@ namespace Jack_Darcy_Restaurant.Pages
         {
 
         }
-        public static void PageHandlerMenu()
+        public static void PageHandlerMenu()//small pagefhandle within menu 
         {
             Console.Clear();
             string s = $"Choose your feature \n";
@@ -751,8 +751,8 @@ namespace Jack_Darcy_Restaurant.Pages
 
 
             Console.WriteLine(s);
-            string input = Console.ReadLine();// neemt input
-            bool test = int.TryParse(input, out int page); //kijken of string kan omzetten naar nummer
+            string input = Console.ReadLine();// takes input
+            bool test = int.TryParse(input, out int page); 
             if (test)
             {
                 if (page == 0)

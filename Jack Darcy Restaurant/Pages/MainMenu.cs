@@ -8,7 +8,7 @@ namespace Jack_Darcy_Restaurant.Pages
 {
     public class MainMenu
     {
-        public static void Show()
+        public static void Show()//main menu 
         {
             string s = "Welcome to Jack Darcy's! Choose one of the following options to go to the desired page: \n";
 

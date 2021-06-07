@@ -16,8 +16,7 @@ namespace Jack_Darcy_Restaurant.Pages
         // Show the form with the questions and checks if there is still room available
         public static void showForm()
         {
-            Console.Clear();
-
+            Console.Clear();// getting all inputs
             showErrors();
 
             Console.WriteLine("What is the date you want to make a reservation for? [dd-mm-yyyy]");
