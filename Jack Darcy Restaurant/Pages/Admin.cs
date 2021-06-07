@@ -11,6 +11,7 @@ namespace Jack_Darcy_Restaurant.Pages
     {
         public static void ManageUsers()
         {
+            // get all user that are not the logged in user and add them to the table
             User[] users = DB.LoadUser().Where(el => el.Id != Manager.User.Id).ToArray();
             ConsoleTable userTable = new ConsoleTable("ID", "Name", "Role name");
             foreach (User item in users)
@@ -28,6 +29,7 @@ namespace Jack_Darcy_Restaurant.Pages
             }
             int idRole;
             Console.Clear();
+            // find user by id or name and if found give a choice
             User chosenUser = Array.Find(users, el => el.Name == answer || (int.TryParse(answer, out idRole) && idRole == el.Id));
             if(chosenUser == null || chosenUser.Id == Manager.User.Id)
             {
@@ -41,6 +43,7 @@ namespace Jack_Darcy_Restaurant.Pages
             answer = Console.ReadLine();
             if (answer == "0")
             {
+                // get all the role in the table and the ans the users give if it's found update the user with  that role
                 Console.Clear();
                 ConsoleTable roleTable = new ConsoleTable("ID", "Name");
                 foreach (Role item in DB.GetAllRole())
