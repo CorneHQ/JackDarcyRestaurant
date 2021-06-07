@@ -20,7 +20,8 @@ namespace Jack_Darcy_Restaurant.Utils
             //9 See_Transactions
             //10 See_Takeaway_Orders           
             //11 Access_Shopping_Cart
-            
+            // for every case we see if a role or user exist and has the permision
+
             if (page == 0) {
                 if(Manager.User != null)
                 {

@@ -70,7 +70,7 @@ namespace Jack_Darcy_Restaurant.Pages
 
             var year = int.Parse(dateParts[1]);
             var month = int.Parse(dateParts[0]);
-            var lastDateOfExpiryMonth = DateTime.DaysInMonth(year, month); //get the last day of the given moth and year
+            var lastDateOfExpiryMonth = DateTime.DaysInMonth(year, month); //get the last day of the given month and year
             var cardExpiry = new DateTime(year, month, lastDateOfExpiryMonth, 23, 59, 59);// the full date when it wil expire
 
             // check if the card is expired

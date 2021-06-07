@@ -32,26 +32,21 @@ namespace Jack_Darcy_Restaurant.Utils
                 //new page  
                 Pages.Reservation.showMenu();
             }
-            else if (Manager.User != null && newPage == 5)
+            else if (Manager.User != null && newPage == 8)
             {
                 Authenticate.Logout();
             }
-            else if (Manager.User != null && newPage == 6)
+            else if (Manager.User != null && newPage == 5)
             {
                 Admin.ManageUsers();
-            } else if(newPage == 7)
-            {
-                Payment.Pay(0.00);
-            }
-            else if (Manager.User != null && newPage == 8)
-            {
-                Menus.ShowMenus();
-            }
-            else if (Manager.User != null && newPage == 9)
+            } else if(newPage == 6)
             {
                 ViewCart.CurrentCart();
             }
-            else if (newPage == -1)
+            else if (Manager.User != null && newPage == 7)
+            {
+                Menus.ShowMenus();
+            } if (newPage == -1)
             {
                 MainMenu.Show();
             }
