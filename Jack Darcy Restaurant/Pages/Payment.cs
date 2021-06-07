@@ -29,7 +29,7 @@ namespace Jack_Darcy_Restaurant.Pages
             int sum = 0;
             int temp;
             bool b = true;
-            while (number > 0)
+            while (number > 0)//checking card number 
             {
 
                 temp = b ? (int)(number % 10)  * 1: (int)(number % 10) * 2;

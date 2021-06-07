@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Jack_Darcy_Restaurant.Models
 {
-    public class MenuItem
+    public class MenuItem // class constructor of menuitem
     {
         public int Id { get; set; }
         public int Menu_Id { get; set; }

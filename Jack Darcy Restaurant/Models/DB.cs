@@ -25,7 +25,7 @@ namespace Jack_Darcy_Restaurant.Models
             return true;
         }
 
-        public static bool UpdateUser(User user)
+        public static bool UpdateUser(User user)// when adding it checks if there is the same account
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
@@ -39,7 +39,7 @@ namespace Jack_Darcy_Restaurant.Models
               
             return false;
         }
-        public static bool RemoveUser(User user)
+        public static bool RemoveUser(User user)// delete user 
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
@@ -47,7 +47,7 @@ namespace Jack_Darcy_Restaurant.Models
             return true;
         }
 
-        public static bool RemoveCart()
+        public static bool RemoveCart()// deleting things from cart 
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
@@ -56,7 +56,7 @@ namespace Jack_Darcy_Restaurant.Models
             return true;
         }
 
-        public static Role GetRole(int ID)
+        public static Role GetRole(int ID)// getting id
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Role>();
@@ -64,7 +64,7 @@ namespace Jack_Darcy_Restaurant.Models
             return r;
         }
 
-        public static Role GetRole(string roleName)
+        public static Role GetRole(string roleName)// get role 
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Role>();
@@ -72,14 +72,14 @@ namespace Jack_Darcy_Restaurant.Models
             return r;
         }
 
-        public static Role[] GetAllRole()
+        public static Role[] GetAllRole()// get all role in array
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Role>();
             Role[] r = collection.AsQueryable().ToArray();
             return r;
         }
-        public static bool UpdateCart(MenuItem menuItem)
+        public static bool UpdateCart(MenuItem menuItem)// updating database when adding things in cart
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
@@ -90,7 +90,7 @@ namespace Jack_Darcy_Restaurant.Models
             collection.ReplaceOne(c.Id, c);
             return true;
         }
-        public static User[] LoadCart()
+        public static User[] LoadCart()// loading cart items
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
@@ -98,7 +98,7 @@ namespace Jack_Darcy_Restaurant.Models
             User[] carts = collection.AsQueryable().ToArray<User>();
             return carts;
         }
-        public static MenuItem[] LoadMenuItems()
+        public static MenuItem[] LoadMenuItems()// loading menu Items 
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<MenuItem>();
@@ -107,7 +107,7 @@ namespace Jack_Darcy_Restaurant.Models
             return items;
         }
 
-        public static void RoleInit()
+        public static void RoleInit()// creating all roles here
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Role>();
@@ -189,7 +189,7 @@ namespace Jack_Darcy_Restaurant.Models
 
         }
 
-        public static void UserInit()
+        public static void UserInit()// creating all users 
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<User>();
@@ -200,7 +200,7 @@ namespace Jack_Darcy_Restaurant.Models
             }
         }
 
-        public static void MenuInit()
+        public static void MenuInit()// creating all menus 
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<Menu>();
@@ -238,7 +238,7 @@ namespace Jack_Darcy_Restaurant.Models
 
            
         }
-        public static void MenuItemInit()
+        public static void MenuItemInit()// creating all menu Items 
         {
             var store = new DataStore("data.json");
             var collection = store.GetCollection<MenuItem>();

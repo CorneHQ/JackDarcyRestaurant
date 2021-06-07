@@ -8,7 +8,7 @@ namespace Jack_Darcy_Restaurant.Pages
     class Authenticate
     {
 
-        public static void Login()
+        public static void Login()//login system
         {
             Console.Clear();
             Permisions.CheckPermisions(0);
@@ -80,7 +80,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Program.ToMainMenu();
         }
 
-        public static void Register()
+        public static void Register()//register system 
         {
             Console.Clear();
             Permisions.CheckPermisions(0);
@@ -138,7 +138,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Program.ToMainMenu();
         }
 
-        public static void Logout()
+        public static void Logout()//logout 
         {
             Console.Clear();
             Console.WriteLine("Logout");

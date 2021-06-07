@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Jack_Darcy_Restaurant.Models
 {
-    public class User
+    public class User //role constructor
     {
         public int Id { get; set; }
         public int Role_Id { get; set; }

@@ -15,7 +15,7 @@ namespace Jack_Darcy_Restaurant.Pages
 
         public static void showForm()
         {
-            Console.Clear();
+            Console.Clear();// getting all inputs
             showErrors();
             Console.WriteLine("What is the date you want to make a reservation for? [dd-mm-yyyy]");
             string dateStr = Console.ReadLine();
@@ -26,7 +26,7 @@ namespace Jack_Darcy_Restaurant.Pages
             Console.WriteLine("With how many people are coming?");
             string amountOfPeopleStr = Console.ReadLine();
 
-            DateTime date;
+            DateTime date;// checking all inputs 
             if (!DateTime.TryParse(dateStr, out date))
             {
                 addError("The given date is not a valid date");
@@ -68,7 +68,7 @@ namespace Jack_Darcy_Restaurant.Pages
             }
 
 
-            DataStore store = new DataStore("data.json");
+            DataStore store = new DataStore("data.json");//checking if there a table left  
 
             var reservationsCollection = store.GetCollection<Models.Reservation>()
                 .AsQueryable()
