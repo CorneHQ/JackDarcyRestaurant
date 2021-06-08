@@ -174,7 +174,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     }
                 } else if (key == ConsoleKey.Tab)
                 {
-                    Order(menuId, menuItems);
+                    Order(menuId, menuItems); // The code to order is in separate function because otherwise you couldn't press backspace and shift
                     break;
                 }
                 //string itemName = Console.ReadLine();
@@ -614,7 +614,7 @@ namespace Jack_Darcy_Restaurant.Pages
                     }
 
 
-                    Console.WriteLine("Please enter Id of Product you wanne delete");
+                    Console.WriteLine("Please enter ID of the product you want to delete");
                     string input1 = Console.ReadLine();//input
                     //check input for number
 
@@ -627,7 +627,7 @@ namespace Jack_Darcy_Restaurant.Pages
                             Console.WriteLine($"Id = {x.Id}\n" +
                                 $"Name = {x.Name}\n");
                         }
-                        Console.WriteLine("\nThat is not a number please try again\n");
+                        Console.WriteLine("\nThat is not a number, please try again\n");
                         Console.WriteLine(" Please Enter Id of Menu you want to append to");
                         input1 = Console.ReadLine();
                         testinginputID = int.TryParse(input1, out ID);

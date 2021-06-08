@@ -16,7 +16,7 @@ namespace Jack_Darcy_Restaurant.Utils
             {
                 About.Show();
             }
-            else if (Manager.User == null && newPage == 1)
+            else if (Manager.User == null && newPage == 1) // Manager.User is null if the user isn't logged in, so only non-logged in users can see these pages
             {
                 Authenticate.Login();
             }
