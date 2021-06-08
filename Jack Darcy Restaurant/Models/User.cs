@@ -20,7 +20,7 @@ namespace Jack_Darcy_Restaurant.Models
             Password = cPassword;
             Email = cEmail;
             Role_Id = cRoles;
-            Cart = new List<MenuItem>();
+            Cart = new List<MenuItem>(); // Items added to the user's cart will go into this array
         }
 
         public bool Validate(string vName, string vPassword)
